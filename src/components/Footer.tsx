@@ -38,7 +38,7 @@ export default function Footer() {
         
         <div>
           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
-            Let's build something exceptional.
+            Let&apos;s build something exceptional.
           </h2>
           <p className="text-gray-400 text-lg mb-12 max-w-md">
             Reach out to discuss your next web application or international digital campaign.
