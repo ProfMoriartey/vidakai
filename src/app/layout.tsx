@@ -3,6 +3,9 @@ import "~/styles/globals.css";
 import { type Metadata } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import { cn } from "~/lib/utils";
+import { CursorProvider } from "../context/CursorContext"
+import CustomCursor from "../components/CustomCursor"
+import SmoothScroll from "~/components/SmoothScroll";
 
 const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
 
@@ -22,7 +25,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={cn(geist.variable, "font-mono", jetbrainsMono.variable)}>
-      <body>{children}</body>
+      <body><SmoothScroll><CursorProvider><CustomCursor />{children}</CursorProvider></SmoothScroll></body>
     </html>
   );
 }
