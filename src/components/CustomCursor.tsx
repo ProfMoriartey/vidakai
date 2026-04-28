@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion"
 import { useCursor } from "../context/CursorContext"
 
 export default function CustomCursor() {
-  const { cursorType, cursorText } = useCursor()
+  const { cursorType, cursorText, cursorColor } = useCursor()
   const [isVisible, setIsVisible] = useState(false)
   
   const mouseX = useMotionValue(0)
@@ -27,32 +27,34 @@ export default function CustomCursor() {
 
   if (!isVisible) return null
 
+  const isLight = cursorColor === "light"
+
   const variants = {
     default: { 
       height: 16, 
       width: 16, 
       x: "-50%", 
       y: "-50%", 
-      backgroundColor: "#000",
+      backgroundColor: isLight ? "#fff" : "#000",
       border: "0px solid transparent"
     },
     pointer: { 
-      height: 40, 
-      width: 40, 
+      height: 64, 
+      width: 64, 
       x: "-50%", 
       y: "-50%", 
-      backgroundColor: "#fff", 
-      border: "1px solid #e5e7eb",
-      color: "#000"
+      backgroundColor: isLight ? "transparent" : "#fff", 
+      border: `1px solid ${isLight ? "#fff" : "#e5e7eb"}`,
+      color: isLight ? "#fff" : "#000"
     },
     project: { 
       height: 80, 
       width: 80, 
       x: "-50%", 
       y: "-50%", 
-      backgroundColor: "#000", 
+      backgroundColor: isLight ? "#fff" : "#000", 
       border: "0px solid transparent",
-      color: "#fff" 
+      color: isLight ? "#000" : "#fff" 
     }
   }
 
