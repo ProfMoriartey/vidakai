@@ -3,6 +3,7 @@
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls, Icosahedron } from "@react-three/drei"
 import MagneticElement from "./MagneticElement"
+import RotatingText from "./RotatingText"
 
 export default function Hero() {
   return (
@@ -19,9 +20,10 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 text-center px-4 pointer-events-none flex flex-col items-center">
-      <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8 text-black">
-          Digital Craft & <br /> Web Engineering.
-        </h1>
+      <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8 text-black flex flex-col md:flex-row gap-4">
+      <span>Digital Craft &</span>
+        <RotatingText />
+      </h1>
         <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mb-12">
           We builds high-performance web applications and manages secure cloud infrastructure for ambitious brands.
         </p>

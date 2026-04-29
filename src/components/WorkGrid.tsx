@@ -4,15 +4,18 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { projects } from "../data/projects"
 import { useCursor } from "../context/CursorContext"
+import RevealText from "./RevealText";
 
 export default function WorkGrid() {
   const { setCursorType, setCursorText } = useCursor()
 
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" id="work">
-      <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-12">
-        Selected Work
-      </h2>
+      <RevealText>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-12">
+          Selected Work
+        </h2>
+      </RevealText>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project) => (
