@@ -36,8 +36,8 @@ export default function InteractiveShape() {
           return // Exit if no touch is detected
         }
       } else {
-        clientX = (event as MouseEvent).clientX
-        clientY = (event as MouseEvent).clientY
+        clientX = event.clientX
+        clientY = event.clientY
       }
 
       globalMouse.x = (clientX / window.innerWidth) * 2 - 1
