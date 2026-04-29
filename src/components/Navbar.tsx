@@ -12,7 +12,7 @@ export default function Navbar() {
 
   const handleMouseEnter = () => {
     setCursorType("pointer")
-    setCursorText("Open")
+    setCursorText("Go to")
   }
 
   const handleMouseLeave = () => {

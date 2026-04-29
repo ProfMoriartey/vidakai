@@ -57,7 +57,7 @@ export default function Services() {
               variants={cardVariants}
               className="p-8 border border-gray-100 bg-gray-50 rounded-2xl flex flex-col group hover:bg-black hover:text-white transition-colors duration-500"
               onMouseEnter={() => {
-                setCursorType("pointer")
+                setCursorType("inverse")
                 setCursorText("View")
               }}
               onMouseLeave={() => {

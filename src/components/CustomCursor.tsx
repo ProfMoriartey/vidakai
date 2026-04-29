@@ -52,6 +52,14 @@ export default function CustomCursor() {
       backgroundColor: isLight ? "#fff" : "#000",
       border: "0px solid transparent"
     },
+    inverse: { 
+      height: 16, 
+      width: 16, 
+      x: "-50%", 
+      y: "-50%", 
+      backgroundColor: isLight ? "#000" : "#fff",
+      border: "0px solid transparent"
+    },
     pointer: { 
       height: 64, 
       width: 64, 
