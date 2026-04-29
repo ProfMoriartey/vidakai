@@ -19,13 +19,12 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 text-center px-4 pointer-events-none flex flex-col items-center">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-black mb-6">
-          Digital Craft
+      <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8 text-black">
+          Digital Craft & <br /> Web Engineering.
         </h1>
-        <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-          We build modern web experiences
+        <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mb-12">
+          We builds high-performance web applications and manages secure cloud infrastructure for ambitious brands.
         </p>
-        
         <div className="pointer-events-auto">
           <MagneticElement cursorText="Start">
             <button className="bg-black text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors">

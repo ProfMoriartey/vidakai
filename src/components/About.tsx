@@ -35,13 +35,13 @@ export default function About() {
           </h2>
           <div className="space-y-6 text-gray-600 text-lg">
             <p>
-              I build custom web applications and lead international sales and marketing campaigns. This dual focus allows me to create digital products that look great and drive real business growth.
+              VidaKai is a specialized web development agency. We engineer digital products and manage the underlying technical operations that drive real business growth.
             </p>
             <p>
-              My foundation stems from a Bachelor of Science in Chemistry. This background grounds my approach in deep analytical thinking and precise problem-solving. I treat code architecture the same way I treat chemical structures—every piece must serve a deliberate purpose.
+              Our foundation relies on deep analytical thinking and precise problem-solving. We treat code architecture the same way we treat physical structures—every piece must serve a deliberate purpose and withstand scale.
             </p>
             <p>
-              Currently, I direct the web presence and global marketing efforts for Tüzemen Group. I also manage the full project lifecycle for independent applications, ensuring accessible and modern user experiences.
+              As the Technical Director, I oversee the full project lifecycle for every application we deploy. Our team ensures that every interface is accessible and every database is secure.
             </p>
           </div>
         </motion.div>

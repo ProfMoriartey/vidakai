@@ -2,17 +2,31 @@
 
 import { useEffect, useState } from "react"
 import { motion, useMotionValue, useSpring } from "framer-motion"
+import { usePathname } from "next/navigation"
 import { useCursor } from "../context/CursorContext"
 
 export default function CustomCursor() {
-  const { cursorType, cursorText, cursorColor } = useCursor()
+  // 1. Destructure the setter functions from your context
+  const { 
+    cursorType, setCursorType, 
+    cursorText, setCursorText, 
+    cursorColor 
+  } = useCursor()
+  
   const [isVisible, setIsVisible] = useState(false)
+  const pathname = usePathname() // 2. Get the current route
   
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
   const springX = useSpring(mouseX, { stiffness: 500, damping: 28 })
   const springY = useSpring(mouseY, { stiffness: 500, damping: 28 })
+
+  // 3. Add this effect to reset the cursor on every route change
+  useEffect(() => {
+    setCursorType("default")
+    setCursorText("")
+  }, [pathname, setCursorType, setCursorText])
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {

@@ -30,7 +30,7 @@ export default function Navbar() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            Studio
+            VidaKai
           </Link>
 
           <div className="hidden md:flex space-x-8">

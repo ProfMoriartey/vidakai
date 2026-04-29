@@ -7,18 +7,18 @@ import { useCursor } from "../context/CursorContext"
 const services = [
   {
     id: "01",
-    title: "Web Development",
-    description: "High-performance web applications built with modern frameworks. Focus on speed, security, and scalable architecture."
+    title: "Digital Product Engineering",
+    description: "We build custom, interactive web applications. Our team uses modern frameworks to deliver fast, bug-free software tailored directly to your business requirements."
   },
   {
     id: "02",
-    title: "UI/UX & Design",
-    description: "Editorial, minimalist interfaces prioritizing accessibility and inclusive design across multiple languages."
+    title: "Managed Web Operations",
+    description: "We handle the technical infrastructure so you can focus on running your business. From database configuration to secure cloud hosting and continuous maintenance, we keep your systems online."
   },
   {
     id: "03",
-    title: "Digital Marketing",
-    description: "Strategic international sales and marketing campaigns designed to expand your reach and drive measurable growth."
+    title: "Functional Interface Design",
+    description: "We create accessible, minimalist user interfaces. Our designs prioritize usability and speed, ensuring your customers can navigate your platform without friction."
   }
 ]
 

@@ -30,16 +30,13 @@ export default function WorkGrid() {
                 setCursorText("")
               }}
             >
-              <motion.div
-                className={`absolute inset-0 z-0 ${project.color} opacity-0`}
-                variants={{
-                  initial: { opacity: 0, scale: 0.95 },
-                  hover: { opacity: 1, scale: 1 }
-                }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+              {/* Colored background: Always visible on mobile, hover-only on desktop */}
+              <div 
+                className={`absolute inset-0 z-0 ${project.color} opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 ease-out`} 
               />
 
-              <div className="relative z-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+              {/* Text content container */}
+              <div className="relative z-10 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
                 <div className="flex gap-2 mb-4">
                   {project.tags.map((tag) => (
                     <span key={tag} className="text-xs font-medium px-3 py-1 bg-white/90 rounded-full text-black">
@@ -48,19 +45,15 @@ export default function WorkGrid() {
                   ))}
                 </div>
 
-                <h3 className="text-2xl font-bold text-black group-hover:text-white transition-colors duration-300">
+                {/* Title: White on mobile, Black-to-White on desktop */}
+                <h3 className="text-2xl font-bold text-white md:text-black md:group-hover:text-white transition-colors duration-300">
                   {project.title}
                 </h3>
                 
-                <motion.p 
-                  className="text-gray-600 mt-2 text-sm max-w-sm group-hover:text-white/90 transition-colors duration-300"
-                  variants={{
-                    initial: { opacity: 0, height: 0 },
-                    hover: { opacity: 1, height: "auto" }
-                  }}
-                >
+                {/* Description: Visible on mobile, height-revealed on desktop */}
+                <p className="text-white/90 md:text-gray-600 mt-2 text-sm max-w-sm block md:hidden md:group-hover:block transition-colors duration-300">
                   {project.description}
-                </motion.p>
+                </p>
               </div>
             </motion.div>
           </Link>
