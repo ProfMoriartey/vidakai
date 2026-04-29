@@ -8,7 +8,7 @@ export default function About() {
   const { setCursorType, setCursorText } = useCursor()
 
   return (
-    <section className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-full overflow-hidden bg-white text-black" id="about">
+    <section className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-full overflow-hidden  text-black" id="about">
       
       {/* Background Parallax Elements */}
       <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center">

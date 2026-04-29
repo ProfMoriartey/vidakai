@@ -16,7 +16,7 @@ export default async function ProjectPage({
   }
 
   return (
-    <main className="min-h-screen bg-white text-black pt-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-32">
+    <main className="min-h-screen text-black pt-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-32">
       <Link 
         href="/#work" 
         className="inline-block mb-12 text-sm font-bold tracking-widest uppercase text-gray-400 hover:text-black transition-colors"

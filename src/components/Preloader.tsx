@@ -32,7 +32,7 @@ export default function Preloader() {
           className="fixed inset-0 z-999 flex flex-col items-center justify-center bg-black text-white cursor-none"
         >
           <div className="text-sm font-medium tracking-widest uppercase mb-4 opacity-70">
-            Studio
+            VidaKai
           </div>
           
           <div className="text-7xl md:text-9xl font-bold tracking-tighter tabular-nums">

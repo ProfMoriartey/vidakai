@@ -7,6 +7,7 @@ import { CursorProvider } from "../context/CursorContext"
 import CustomCursor from "../components/CustomCursor"
 import SmoothScroll from "~/components/SmoothScroll";
 import Preloader from "~/components/Preloader";
+import GlobalBackground from "../components/GlobalBackground"
 
 const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
 
@@ -65,7 +66,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={cn(geist.variable, "font-mono", jetbrainsMono.variable)}>
-      <body><SmoothScroll><CursorProvider><Preloader /><CustomCursor />{children}</CursorProvider></SmoothScroll></body>
+      <body><SmoothScroll><CursorProvider><Preloader /><CustomCursor /><GlobalBackground />{children}</CursorProvider></SmoothScroll></body>
     </html>
   );
 }

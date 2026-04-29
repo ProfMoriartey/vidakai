@@ -39,7 +39,7 @@ export default function Services() {
   const { setCursorType, setCursorText } = useCursor()
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-white text-black" id="services">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto  text-black" id="services">
       <motion.div
         initial="hidden"
         whileInView="visible"
