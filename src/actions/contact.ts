@@ -2,12 +2,19 @@
 
 import nodemailer from "nodemailer"
 
-export async function sendContactEmail(prevState: any, formData: FormData) {
+// 1. Define the exact shape of the state object
+export interface ContactFormState {
+  error: string
+  success: boolean
+  message: string
+}
+
+// 2. Replace 'any' with 'ContactFormState'
+export async function sendContactEmail(prevState: ContactFormState, formData: FormData) {
   const email = formData.get("email") as string
   const message = formData.get("message") as string
 
   if (!email || !message) {
-    // 1. Updated to return all three properties
     return { error: "Please fill out all fields.", success: false, message: "" }
   }
 
@@ -34,13 +41,10 @@ export async function sendContactEmail(prevState: any, formData: FormData) {
       `,
     })
 
-    // 2. Updated to return all three properties
     return { error: "", success: true, message: "Message sent successfully." }
     
   } catch (error) {
     console.error("Email Error:", error)
-    
-    // 3. Updated to return all three properties
     return { error: "Failed to send message. Please try again.", success: false, message: "" }
   }
 }
