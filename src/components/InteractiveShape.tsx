@@ -1,45 +1,83 @@
 "use client"
 
-import { useRef, useEffect, useMemo } from "react" // Added useEffect, useMemo
+import { useRef, useEffect, useMemo } from "react"
 import { useFrame } from "@react-three/fiber"
 import { Icosahedron } from "@react-three/drei"
 import * as THREE from "three"
 
 export default function InteractiveShape() {
   const meshRef = useRef<THREE.Mesh>(null)
-
-  // 1. Create a raw object to store the global mouse position efficiently
-  // without triggering React re-renders on every mouse move.
+  
   const globalMouse = useMemo(() => ({ x: 0, y: 0 }), [])
+  
+  // 1. Setup refs to track interaction time without causing React re-renders
+  // We initialize it 4 seconds in the past so it auto-rotates immediately on page load
+  const lastInteractionTime = useRef<number>(Date.now() - 4000)
+  const isIdle = useRef<boolean>(true)
 
-  // 2. Add a global window listener for global viewport tracking
   useEffect(() => {
-    const handleGlobalMouseMove = (event: MouseEvent) => {
-      // Normalize mouse coordinates between -1 and 1 across the window
-      // (clientX / innerWidth) maps to (0 to 1), then we map to (-1 to 1)
-      globalMouse.x = (event.clientX / window.innerWidth) * 2 - 1
-      globalMouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+    const handleInteraction = (event: MouseEvent | TouchEvent) => {
+      lastInteractionTime.current = Date.now()
+      isIdle.current = false
+
+      let clientX = 0
+      let clientY = 0
+
+      // Handle both mouse and touch coordinates safely
+      if ('touches' in event) {
+        // Extract the first touch object directly
+        const firstTouch = event.touches[0]
+        
+        // Check if the object actually exists to satisfy TypeScript
+        if (firstTouch) {
+          clientX = firstTouch.clientX
+          clientY = firstTouch.clientY
+        } else {
+          return // Exit if no touch is detected
+        }
+      } else {
+        clientX = (event as MouseEvent).clientX
+        clientY = (event as MouseEvent).clientY
+      }
+
+      globalMouse.x = (clientX / window.innerWidth) * 2 - 1
+      globalMouse.y = -(clientY / window.innerHeight) * 2 + 1
     }
 
-    // Only add listener on devices that support hover
-    if (window.matchMedia("(any-hover: hover)").matches) {
-      window.addEventListener("mousemove", handleGlobalMouseMove)
-    }
+    // 3. Listen for both mouse and mobile touch events
+    window.addEventListener("mousemove", handleInteraction)
+    window.addEventListener("touchmove", handleInteraction, { passive: true })
+    window.addEventListener("touchstart", handleInteraction, { passive: true })
 
-    return () => window.removeEventListener("mousemove", handleGlobalMouseMove)
+    return () => {
+      window.removeEventListener("mousemove", handleInteraction)
+      window.removeEventListener("touchmove", handleInteraction)
+      window.removeEventListener("touchstart", handleInteraction)
+    }
   }, [globalMouse])
 
-  // 3. Update useFrame to use the global coordinates
-  useFrame((state) => {
+  // 4. The delta parameter gives us the time between frames, 
+  // ensuring the rotation speed is consistent regardless of the user's monitor refresh rate.
+  useFrame((state, delta) => {
     if (!meshRef.current) return
 
-    // Instead of state.pointer, we use globalMouse
-    const targetX = globalMouse.x * 0.8
-    const targetY = globalMouse.y * 0.8
+    // 5. Check if 3 seconds (3000ms) have passed since the last movement
+    if (Date.now() - lastInteractionTime.current > 3000) {
+      isIdle.current = true
+    }
 
-    // The smoothing (lerp) logic stays exactly the same
-    meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetX, 0.05)
-    meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, -targetY, 0.05)
+    if (isIdle.current) {
+      // Idle Mode: Smooth, continuous auto-rotation
+      meshRef.current.rotation.y += delta * 0.2
+      meshRef.current.rotation.x += delta * 0.15
+    } else {
+      // Active Mode: Magnetic mouse tracking
+      const targetX = globalMouse.x * 0.8
+      const targetY = globalMouse.y * 0.8
+
+      meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetX, 0.05)
+      meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, -targetY, 0.05)
+    }
   })
 
   return (

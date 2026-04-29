@@ -20,8 +20,10 @@ export default function Hero() {
       {/* Foreground Content */}
       <div className="relative z-10 max-w-7xl mx-auto w-full pointer-events-auto">
         <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8 flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col">
           <span>Digital Craft &</span>
           <RotatingText />
+            </div> 
         </h1>
         
         <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mb-12">
