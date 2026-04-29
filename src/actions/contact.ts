@@ -1,33 +1,46 @@
 "use server"
 
-export async function submitContact(formData: FormData) {
-  const rawName = formData.get("name")
-  const rawEmail = formData.get("email")
-  const rawMessage = formData.get("message")
+import nodemailer from "nodemailer"
 
-  // Type guard: Check if all values exist and are strings
-  if (
-    typeof rawName !== "string" || 
-    typeof rawEmail !== "string" || 
-    typeof rawMessage !== "string"
-  ) {
-    return { error: "Please fill out all fields correctly." }
+export async function sendContactEmail(prevState: any, formData: FormData) {
+  const email = formData.get("email") as string
+  const message = formData.get("message") as string
+
+  if (!email || !message) {
+    // 1. Updated to return all three properties
+    return { error: "Please fill out all fields.", success: false, message: "" }
   }
 
-  // Now TypeScript safely treats these as strings
-  const name = rawName.trim()
-  const email = rawEmail.trim()
-  const message = rawMessage.trim()
+  const transporter = nodemailer.createTransport({
+    service: "gmail", 
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  })
 
-  if (!name || !email || !message) {
-    return { error: "Fields cannot be empty." }
+  try {
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, 
+      replyTo: email, 
+      subject: `New Project Inquiry from ${email}`,
+      text: message,
+      html: `
+        <h3>New Contact Form Submission</h3>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `,
+    })
+
+    // 2. Updated to return all three properties
+    return { error: "", success: true, message: "Message sent successfully." }
+    
+  } catch (error) {
+    console.error("Email Error:", error)
+    
+    // 3. Updated to return all three properties
+    return { error: "Failed to send message. Please try again.", success: false, message: "" }
   }
-
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 1000))
-
-  // No more linting errors here
-  console.log(`New message from ${name} (${email}): ${message}`)
-
-  return { success: "Message received. We will be in touch shortly." }
 }

@@ -1,88 +1,92 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { motion, useMotionValue, useSpring } from "framer-motion"
-import { usePathname } from "next/navigation"
-import { useCursor } from "../context/CursorContext"
+import { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useCursor } from "../context/CursorContext";
 
 export default function CustomCursor() {
-  // 1. Destructure the setter functions from your context
-  const { 
-    cursorType, setCursorType, 
-    cursorText, setCursorText, 
-    cursorColor 
-  } = useCursor()
-  
-  const [isVisible, setIsVisible] = useState(false)
-  const pathname = usePathname() // 2. Get the current route
-  
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
+  const { cursorType, setCursorType, cursorText, setCursorText, cursorColor } =
+    useCursor();
 
-  const springX = useSpring(mouseX, { stiffness: 500, damping: 28 })
-  const springY = useSpring(mouseY, { stiffness: 500, damping: 28 })
+  const [isVisible, setIsVisible] = useState(false);
+  const [isHoverDevice, setIsHoverDevice] = useState(false);
+  const pathname = usePathname();
 
-  // 3. Add this effect to reset the cursor on every route change
-  useEffect(() => {
-    setCursorType("default")
-    setCursorText("")
-  }, [pathname, setCursorType, setCursorText])
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springX = useSpring(mouseX, { stiffness: 500, damping: 28 });
+  const springY = useSpring(mouseY, { stiffness: 500, damping: 28 });
 
   useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      mouseX.set(e.clientX)
-      mouseY.set(e.clientY)
-      if (!isVisible) setIsVisible(true)
+    setCursorType("default");
+    setCursorText("");
+  }, [pathname, setCursorType, setCursorText]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(any-hover: hover)");
+
+    if (!mediaQuery.matches) {
+      return;
     }
-    
-    window.addEventListener("mousemove", moveCursor)
-    return () => window.removeEventListener("mousemove", moveCursor)
-  }, [mouseX, mouseY, isVisible])
 
-  if (!isVisible) return null
+    setIsHoverDevice(true);
 
-  const isLight = cursorColor === "light"
+    const moveCursor = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+      if (!isVisible) setIsVisible(true);
+    };
+
+    window.addEventListener("mousemove", moveCursor);
+    return () => window.removeEventListener("mousemove", moveCursor);
+  }, [mouseX, mouseY, isVisible]);
+
+  if (!isHoverDevice || !isVisible) return null;
+
+  const isLight = cursorColor === "light";
 
   const variants = {
-    default: { 
-      height: 16, 
-      width: 16, 
-      x: "-50%", 
-      y: "-50%", 
+    default: {
+      height: 16,
+      width: 16,
+      x: "-50%",
+      y: "-50%",
       backgroundColor: isLight ? "#fff" : "#000",
-      border: "0px solid transparent"
-    },
-    inverse: { 
-      height: 16, 
-      width: 16, 
-      x: "-50%", 
-      y: "-50%", 
-      backgroundColor: isLight ? "#000" : "#fff",
-      border: "0px solid transparent"
-    },
-    pointer: { 
-      height: 64, 
-      width: 64, 
-      x: "-50%", 
-      y: "-50%", 
-      backgroundColor: isLight ? "transparent" : "#fff", 
-      border: `1px solid ${isLight ? "#fff" : "#e5e7eb"}`,
-      color: isLight ? "#fff" : "#000"
-    },
-    project: { 
-      height: 80, 
-      width: 80, 
-      x: "-50%", 
-      y: "-50%", 
-      backgroundColor: isLight ? "#fff" : "#000", 
       border: "0px solid transparent",
-      color: isLight ? "#000" : "#fff" 
-    }
-  }
+    },
+    inverse: {
+      height: 16,
+      width: 16,
+      x: "-50%",
+      y: "-50%",
+      backgroundColor: isLight ? "#000" : "#fff",
+      border: "0px solid transparent",
+    },
+    pointer: {
+      height: 64,
+      width: 64,
+      x: "-50%",
+      y: "-50%",
+      backgroundColor: isLight ? "transparent" : "#fff",
+      border: `1px solid ${isLight ? "#fff" : "#e5e7eb"}`,
+      color: isLight ? "#fff" : "#000",
+    },
+    project: {
+      height: 80,
+      width: 80,
+      x: "-50%",
+      y: "-50%",
+      backgroundColor: isLight ? "#fff" : "#000",
+      border: "0px solid transparent",
+      color: isLight ? "#000" : "#fff",
+    },
+  };
 
   return (
     <motion.div
-      className="fixed top-0 left-0 z-100 pointer-events-none rounded-full flex items-center justify-center text-[10px] uppercase tracking-widest font-bold shadow-sm"
+      className="pointer-events-none fixed top-0 left-0 z-100 flex items-center justify-center rounded-full text-[10px] font-bold tracking-widest uppercase shadow-sm"
       style={{ x: springX, y: springY }}
       variants={variants}
       animate={cursorType}
@@ -98,5 +102,5 @@ export default function CustomCursor() {
         </motion.span>
       )}
     </motion.div>
-  )
+  );
 }
