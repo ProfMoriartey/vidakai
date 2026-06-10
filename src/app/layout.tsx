@@ -3,8 +3,6 @@ import "~/styles/globals.css";
 import { type Metadata } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import { cn } from "~/lib/utils";
-import { CursorProvider } from "../context/CursorContext";
-import CustomCursor from "../components/CustomCursor";
 import SmoothScroll from "~/components/SmoothScroll";
 import Preloader from "~/components/Preloader";
 import GlobalBackground from "../components/GlobalBackground";
@@ -83,12 +81,9 @@ export default function RootLayout({
     >
       <body>
         <SmoothScroll>
-          <CursorProvider>
-            <Preloader />
-            <CustomCursor />
-            <GlobalBackground />
-            {children}
-          </CursorProvider>
+          <Preloader />
+          <GlobalBackground />
+          {children}
         </SmoothScroll>
       </body>
     </html>

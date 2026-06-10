@@ -6,8 +6,6 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { sendContactEmail } from "../actions/contact";
-import { useCursor } from "../context/CursorContext";
-import MagneticElement from "./MagneticElement";
 
 const initialState = {
   error: "",
@@ -16,7 +14,6 @@ const initialState = {
 };
 
 export default function Footer() {
-  const { setCursorType, setCursorText, setCursorColor } = useCursor();
   const [activeLang, setActiveLang] = useState("EN");
 
   // Connect the server action to the UI state
@@ -35,8 +32,6 @@ export default function Footer() {
     <footer
       className="bg-black px-4 py-24 text-white sm:px-6 lg:px-8"
       id="contact"
-      onMouseEnter={() => setCursorColor("light")}
-      onMouseLeave={() => setCursorColor("dark")}
     >
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 lg:grid-cols-2">
         <div>
@@ -61,14 +56,6 @@ export default function Footer() {
                     ? "text-white"
                     : "text-gray-600 hover:text-gray-300"
                 }`}
-                onMouseEnter={() => {
-                  setCursorType("pointer");
-                  setCursorText(lang.code);
-                }}
-                onMouseLeave={() => {
-                  setCursorType("default");
-                  setCursorText("");
-                }}
               >
                 {lang.label}
               </button>
@@ -104,15 +91,13 @@ export default function Footer() {
               />
             </div>
 
-            <MagneticElement cursorText="Send" className="w-full">
-              <Button
-                type="submit"
-                disabled={isPending}
-                className="h-14 w-full rounded-full bg-white text-base font-bold tracking-tight text-black transition-colors hover:bg-gray-200 disabled:opacity-50"
-              >
-                {isPending ? "Sending..." : "Submit Request"}
-              </Button>
-            </MagneticElement>
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="h-14 w-full rounded-full bg-white text-base font-bold tracking-tight text-black transition-colors hover:bg-gray-200 disabled:opacity-50"
+            >
+              {isPending ? "Sending..." : "Submit Request"}
+            </Button>
 
             {/* Status Messages */}
             {state?.error && (
