@@ -14,7 +14,7 @@ const technologies = [
 
 export default function Marquee() {
   return (
-    <section className="relative cursor-none overflow-hidden bg-black py-12 text-white">
+    <section className="relative overflow-hidden bg-black py-12 text-white">
       <div className="animate-marquee flex w-[200%]">
         {/* Render the list twice for a seamless loop */}
         {[...technologies, ...technologies].map((tech, index) => (
