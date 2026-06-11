@@ -25,16 +25,16 @@ export const projects: Project[] = [
     mobileImages: ["/placeholder-mobile-1.jpg", "/placeholder-mobile-2.jpg", "/placeholder-mobile-3.jpg"]
   },
   {
-    id: "hastory",
-    title: "Hastory",
+    id: "winbrella",
+    title: "Winbrella Fabrics",
     description: "Freelance web application delivering accessible user experiences.",
     content: "Hastory required a strictly accessible interface supporting right-to-left languages. We engineered a custom layout engine that flips the UI based on user preference. The result is a highly inclusive platform that serves a diverse international audience.",
     tags: ["Next.js", "TypeScript"],
     color: "bg-emerald-600",
     display: true,
-    link: "https://hastory.example.com",
-    desktopImages: ["/placeholder-desktop-1.jpg", "/placeholder-desktop-2.jpg", "/placeholder-desktop-3.jpg"],
-    mobileImages: ["/placeholder-mobile-1.jpg", "/placeholder-mobile-2.jpg", "/placeholder-mobile-3.jpg"]
+    link: "https://winbrellafabrics.com",
+    desktopImages: ["/projects/winbrella2.jpg", "/projects/winbrella1.jpg", "/projects/winbrella3.jpg"],
+    mobileImages: ["/projects/winbrella2ceb.jpg", "/projects/winbrella1ceb.jpg", "/projects/winbrella3ceb.jpg"]
   },
   {
     id: "hastory",

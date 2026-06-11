@@ -1,58 +1,83 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 interface ProjectGalleryProps {
-  desktopImages: string[]
-  mobileImages: string[]
+  desktopImages: string[];
+  mobileImages: string[];
 }
 
-export default function ProjectGallery({ desktopImages, mobileImages }: ProjectGalleryProps) {
-  const [view, setView] = useState<"desktop" | "mobile">("desktop")
-  const [currentIndex, setCurrentIndex] = useState(0)
+export default function ProjectGallery({
+  desktopImages,
+  mobileImages,
+}: ProjectGalleryProps) {
+  const [view, setView] = useState<"desktop" | "mobile">("desktop");
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const activeImages = view === "desktop" ? desktopImages : mobileImages
+  const activeImages = view === "desktop" ? desktopImages : mobileImages;
+  const currentImage = activeImages[currentIndex];
+
+  const handleViewChange = (newView: "desktop" | "mobile") => {
+    setView(newView);
+    const targetImages = newView === "desktop" ? desktopImages : mobileImages;
+
+    if (currentIndex >= targetImages.length) {
+      setCurrentIndex(Math.max(0, targetImages.length - 1));
+    }
+  };
 
   const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % activeImages.length)
-  }
+    setCurrentIndex((prev) => (prev + 1) % activeImages.length);
+  };
 
   const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + activeImages.length) % activeImages.length)
+    setCurrentIndex(
+      (prev) => (prev - 1 + activeImages.length) % activeImages.length,
+    );
+  };
+
+  if (!currentImage) {
+    return (
+      <div className="flex min-h-[400px] w-full items-center justify-center rounded-2xl border border-gray-100 bg-gray-50">
+        <span className="font-medium text-gray-400">No images available</span>
+      </div>
+    );
   }
 
   return (
-    <div className="w-full flex flex-col gap-6">
-      {/* Top Bar: Toggle & Indicators */}
+    <div className="flex w-full flex-col gap-6">
       <div className="flex items-center justify-between">
-        <div className="flex gap-2 bg-gray-100 p-1 rounded-full">
+        <div className="flex gap-2 rounded-full bg-gray-100 p-1">
           <button
-            onClick={() => setView("desktop")}
-            className={`px-6 py-2 rounded-full text-sm font-bold transition-all duration-300 ${
-              view === "desktop" ? "bg-white text-black shadow-sm" : "text-gray-500 hover:text-black"
+            onClick={() => handleViewChange("desktop")}
+            className={`rounded-full px-6 py-2 text-sm font-bold transition-all duration-300 ${
+              view === "desktop"
+                ? "bg-white text-black shadow-sm"
+                : "text-gray-500 hover:text-black"
             }`}
           >
             Desktop
           </button>
           <button
-            onClick={() => setView("mobile")}
-            className={`px-6 py-2 rounded-full text-sm font-bold transition-all duration-300 ${
-              view === "mobile" ? "bg-white text-black shadow-sm" : "text-gray-500 hover:text-black"
+            onClick={() => handleViewChange("mobile")}
+            className={`rounded-full px-6 py-2 text-sm font-bold transition-all duration-300 ${
+              view === "mobile"
+                ? "bg-white text-black shadow-sm"
+                : "text-gray-500 hover:text-black"
             }`}
           >
             Mobile
           </button>
         </div>
 
-        {/* Minimalist Slide Counter */}
         <div className="text-sm font-medium text-gray-400 tabular-nums">
           {currentIndex + 1} / {activeImages.length}
         </div>
       </div>
 
-      {/* Main Image Stage */}
-      <div className="relative w-full bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden flex items-center justify-center min-h-[400px] md:min-h-[600px] p-4 md:p-8">
+      <div className="relative flex min-h-[400px] w-full items-center justify-center overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 p-4 md:min-h-[600px] md:p-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={`${view}-${currentIndex}`}
@@ -60,34 +85,64 @@ export default function ProjectGallery({ desktopImages, mobileImages }: ProjectG
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.02 }}
             transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            className={`relative w-full h-full flex items-center justify-center ${
-              view === "desktop" ? "aspect-video" : "aspect-9/16 max-w-sm mx-auto"
+            className={`relative flex h-full w-full items-center justify-center ${
+              view === "desktop"
+                ? "aspect-34/18"
+                : "mx-auto aspect-12/25 max-w-sm"
             }`}
           >
-            {/* Replace this div with a Next.js <Image /> component later */}
-            <div className="w-full h-full bg-gray-200 rounded-xl flex flex-col items-center justify-center text-gray-500 shadow-sm border border-gray-100/50">
-              <span className="font-bold text-lg mb-2">{view === "desktop" ? "Desktop" : "Mobile"} View</span>
-              <span className="text-sm">Image {currentIndex + 1}</span>
-            </div>
+            <Image
+              src={currentImage}
+              alt={`Project ${view} view ${currentIndex + 1}`}
+              fill
+              className="rounded-xl border border-gray-100/50 object-cover shadow-sm"
+              sizes={
+                view === "desktop"
+                  ? "(max-width: 768px) 100vw, 75vw"
+                  : "(max-width: 768px) 100vw, 33vw"
+              }
+              priority={currentIndex === 0}
+            />
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation Arrows */}
-        <div className="absolute inset-x-4 flex justify-between pointer-events-none">
-          <button 
+        <div className="pointer-events-none absolute inset-x-4 flex justify-between">
+          <button
             onClick={prevImage}
-            className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-sm border border-gray-100 pointer-events-auto hover:scale-105 hover:bg-white transition-all text-black"
+            className="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full border border-gray-100 bg-white/90 text-black shadow-sm backdrop-blur-sm transition-all hover:scale-105 hover:bg-white"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
           </button>
-          <button 
+          <button
             onClick={nextImage}
-            className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-sm border border-gray-100 pointer-events-auto hover:scale-105 hover:bg-white transition-all text-black"
+            className="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full border border-gray-100 bg-white/90 text-black shadow-sm backdrop-blur-sm transition-all hover:scale-105 hover:bg-white"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-  )
+  );
 }
