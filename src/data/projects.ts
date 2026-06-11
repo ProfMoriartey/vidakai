@@ -21,8 +21,8 @@ export const projects: Project[] = [
     color: "bg-blue-600",
     display: true,
     link: "https://menupedia.example.com",
-    desktopImages: ["/placeholder-desktop-1.jpg", "/placeholder-desktop-2.jpg", "/placeholder-desktop-3.jpg"],
-    mobileImages: ["/placeholder-mobile-1.jpg", "/placeholder-mobile-2.jpg", "/placeholder-mobile-3.jpg"]
+    desktopImages: ["/projects/menupedia/menupedia1.jpg", "/projects/menupedia/menupedia3.jpg", "/projects/menupedia/menupedia2.jpg"],
+    mobileImages: ["/projects/menupedia/menupedia1ceb.jpg", "/projects/menupedia/menupedia3ceb.jpg", "/projects/menupedia/menupedia2ceb.jpg"]
   },
   {
     id: "winbrella",
@@ -33,8 +33,8 @@ export const projects: Project[] = [
     color: "bg-emerald-600",
     display: true,
     link: "https://winbrellafabrics.com",
-    desktopImages: ["/projects/winbrella2.jpg", "/projects/winbrella1.jpg", "/projects/winbrella3.jpg"],
-    mobileImages: ["/projects/winbrella2ceb.jpg", "/projects/winbrella1ceb.jpg", "/projects/winbrella3ceb.jpg"]
+    desktopImages: ["/projects/winbrella/winbrella2.jpg", "/projects/winbrella/winbrella1.jpg", "/projects/winbrella/winbrella3.jpg"],
+    mobileImages: ["/projects/winbrella/winbrella2ceb.jpg", "/projects/winbrella/winbrella1ceb.jpg", "/projects/winbrella/winbrella3ceb.jpg"]
   },
   {
     id: "hastory",
