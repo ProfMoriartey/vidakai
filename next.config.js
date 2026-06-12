@@ -11,7 +11,10 @@ const config = {
           {
             protocol: 'https',
             hostname: '0m7zywkdga.ufs.sh',
-          },
+          },{
+            protocol: 'https',
+            hostname: 'wch957nrmt.ufs.sh',
+          },         
         ],
       },
 };
