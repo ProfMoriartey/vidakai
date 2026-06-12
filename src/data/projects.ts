@@ -13,11 +13,30 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "hangflow",
+    title: "Hangflow ry",
+    description: "Freelance web application delivering accessible user experiences.",
+    content: "Hastory required a strictly accessible interface supporting right-to-left languages. We engineered a custom layout engine that flips the UI based on user preference. The result is a highly inclusive platform that serves a diverse international audience.",
+    tags: ["Next.js", "Drizzle ORM", "TypeScript"," Tailwind CSS", " PostgreSQL", "Next-Intl"],
+    color: "bg-green-600",
+    display: true,
+    link: "https://www.hangflow.org/en",
+    desktopImages: [
+      "https://wch957nrmt.ufs.sh/f/ik8BkBvrcXp6OJMlmDKNKG6ckqyvRHalXJp5git4hIezrE2o",
+      "https://wch957nrmt.ufs.sh/f/ik8BkBvrcXp6zkBcxesqKxupshmRtWILo36frlczNZM7DFHk",
+      "https://wch957nrmt.ufs.sh/f/ik8BkBvrcXp6H75LW1CbAFpuQTcd0YD5lRSx3C7eLjKzW42P"
+    ],
+    mobileImages: [
+      "https://wch957nrmt.ufs.sh/f/ik8BkBvrcXp6Ar1xjEef48pv2jlJf3IMg9wBrLncisk0RoxD",
+      "https://wch957nrmt.ufs.sh/f/ik8BkBvrcXp6Ap3CA3f48pv2jlJf3IMg9wBrLncisk0RoxDY",
+      "https://wch957nrmt.ufs.sh/f/ik8BkBvrcXp6M0qkU8h4KC3usBz2P4nThki6NQbfSXJdgc58"
+    ]
+  },{
     id: "menupedia",
     title: "Menupedia",
     description: "Full lifecycle management for a custom restaurant application.",
     content: "We built Menupedia to solve the slow update cycles of traditional restaurant menus. The application features a real-time dashboard for managers to update pricing and availability. The frontend delivers lightning-fast load times for customers scanning QR codes at the table.",
-    tags: ["Next.js", "Tailwind CSS"],
+    tags: ["Next.js"," PostgreSQL", "TypeScript", "Next-Intl", "Drizzle ORM", " Tailwind CSS", "Clerk" ],
     color: "bg-blue-600",
     display: true,
     link: "https://menu-pedia.com",
@@ -37,7 +56,7 @@ export const projects: Project[] = [
     title: "Winbrella Fabrics",
     description: "Freelance web application delivering accessible user experiences.",
     content: "Hastory required a strictly accessible interface supporting right-to-left languages. We engineered a custom layout engine that flips the UI based on user preference. The result is a highly inclusive platform that serves a diverse international audience.",
-    tags: ["Next.js", "TypeScript"],
+    tags: ["Next.js", "Clerk", "TypeScript"," Tailwind CSS", " PostgreSQL", "Drizzle ORM", "Next-Intl"],
     color: "bg-emerald-600",
     display: true,
     link: "https://winbrellafabrics.com",
@@ -57,8 +76,8 @@ export const projects: Project[] = [
     title: "Hastory",
     description: "Freelance web application delivering accessible user experiences.",
     content: "Hastory required a strictly accessible interface supporting right-to-left languages. We engineered a custom layout engine that flips the UI based on user preference. The result is a highly inclusive platform that serves a diverse international audience.",
-    tags: ["Next.js", "TypeScript"],
-    color: "bg-emerald-600",
+    tags: ["Next.js", " PostgreSQL", "TypeScript", "Drizzle ORM"," Tailwind CSS", "Clerk"],
+    color: "bg-green-600",
     display: true,
     link: "https://hastory.vercel.app/",
     desktopImages: [
@@ -73,32 +92,12 @@ export const projects: Project[] = [
     ]
   },
   {
-    id: "hangflow",
-    title: "Hangflow ry",
-    description: "Freelance web application delivering accessible user experiences.",
-    content: "Hastory required a strictly accessible interface supporting right-to-left languages. We engineered a custom layout engine that flips the UI based on user preference. The result is a highly inclusive platform that serves a diverse international audience.",
-    tags: ["Next.js", "TypeScript"],
-    color: "bg-emerald-600",
-    display: true,
-    link: "https://www.hangflow.org/en",
-    desktopImages: [
-      "https://wch957nrmt.ufs.sh/f/ik8BkBvrcXp6OJMlmDKNKG6ckqyvRHalXJp5git4hIezrE2o",
-      "https://wch957nrmt.ufs.sh/f/ik8BkBvrcXp6zkBcxesqKxupshmRtWILo36frlczNZM7DFHk",
-      "https://wch957nrmt.ufs.sh/f/ik8BkBvrcXp6H75LW1CbAFpuQTcd0YD5lRSx3C7eLjKzW42P"
-    ],
-    mobileImages: [
-      "https://wch957nrmt.ufs.sh/f/ik8BkBvrcXp6Ar1xjEef48pv2jlJf3IMg9wBrLncisk0RoxD",
-      "https://wch957nrmt.ufs.sh/f/ik8BkBvrcXp6Ap3CA3f48pv2jlJf3IMg9wBrLncisk0RoxDY",
-      "https://wch957nrmt.ufs.sh/f/ik8BkBvrcXp6M0qkU8h4KC3usBz2P4nThki6NQbfSXJdgc58"
-    ]
-  },
-  {
     id: "hayat-goz",
     title: "Hayat Goz Clinic",
     description: "Full lifecycle management for a custom restaurant application.",
     content: "We built Menupedia to solve the slow update cycles of traditional restaurant menus. The application features a real-time dashboard for managers to update pricing and availability. The frontend delivers lightning-fast load times for customers scanning QR codes at the table.",
-    tags: ["Next.js", "Tailwind CSS"],
-    color: "bg-blue-600",
+    tags: ["Next.js", "Zod", "Next-Intl", "TypeScript", "date-fns", " PostgreSQL", "Drizzle ORM"," Tailwind CSS",  ],
+    color: "bg-brown-600",
     display: true,
     link: "https://hayat-goz.vercel.app/en",
     desktopImages: [
@@ -117,7 +116,7 @@ export const projects: Project[] = [
     title: "QR Code Gen.",
     description: "Full lifecycle management for a custom restaurant application.",
     content: "We built Menupedia to solve the slow update cycles of traditional restaurant menus. The application features a real-time dashboard for managers to update pricing and availability. The frontend delivers lightning-fast load times for customers scanning QR codes at the table.",
-    tags: ["Next.js", "Tailwind CSS"],
+    tags: ["Next.js", "TypeScript", "Drizzle ORM", " PostgreSQL"," Tailwind CSS", "Next-Auth"],
     color: "bg-blue-600",
     display: true,
     link: "https://code-cooker.vercel.app/",
@@ -137,8 +136,8 @@ export const projects: Project[] = [
     title: "Tuzemen Group",
     description: "Full lifecycle management for a custom restaurant application.",
     content: "We built Menupedia to solve the slow update cycles of traditional restaurant menus. The application features a real-time dashboard for managers to update pricing and availability. The frontend delivers lightning-fast load times for customers scanning QR codes at the table.",
-    tags: ["Next.js", "Tailwind CSS"],
-    color: "bg-blue-600",
+    tags: ["Next.js", " Tailwind CSS", "Drizzle ORM", " PostgreSQL", "TypeScript", "Next-Intl"],
+    color: "bg-grey-600",
     display: true,
     link: "https://www.tuzemengroup.com/en",
     desktopImages: [

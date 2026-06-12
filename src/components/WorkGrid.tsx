@@ -1,9 +1,37 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { projects } from "../data/projects";
 import RevealText from "./RevealText";
+
+const RandomTags = ({ tags }: { tags: string[] }) => {
+  const [displayTags, setDisplayTags] = useState<string[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    const shuffled = [...tags].sort(() => 0.5 - Math.random());
+    setDisplayTags(shuffled.slice(0, 3));
+    setIsMounted(true);
+  }, [tags]);
+
+  const tagsToShow = isMounted ? displayTags : tags.slice(0, 3);
+
+  return (
+    <div className="mb-4 flex flex-wrap gap-2">
+      {tagsToShow.map((tag) => (
+        <span
+          key={tag}
+          className="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black shadow-sm"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  );
+};
 
 export default function WorkGrid() {
   const featuredProjects = projects
@@ -22,7 +50,7 @@ export default function WorkGrid() {
         {featuredProjects.map((project) => (
           <Link href={`/work/${project.id}`} key={project.id} className="block">
             <motion.div
-              className="group relative flex h-[400px] flex-col justify-end overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 p-8"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 shadow-sm transition-shadow hover:shadow-md"
               initial="initial"
               whileHover="hover"
             >
@@ -30,23 +58,26 @@ export default function WorkGrid() {
                 className={`absolute inset-0 z-0 ${project.color} opacity-100 transition-opacity duration-500 ease-out md:opacity-0 md:group-hover:opacity-100`}
               />
 
-              <div className="relative z-10 translate-y-0 transition-transform duration-500 ease-out md:translate-y-4 md:group-hover:translate-y-0">
-                <div className="mb-4 flex gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+              <div className="relative z-10 aspect-video w-full overflow-hidden bg-gray-200">
+                {project.desktopImages && project.desktopImages[0] && (
+                  <Image
+                    src={project.desktopImages[0]}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                )}
+              </div>
+
+              <div className="relative z-10 flex flex-col p-6 md:p-8">
+                <RandomTags tags={project.tags} />
 
                 <h3 className="text-2xl font-bold text-white transition-colors duration-300 md:text-black md:group-hover:text-white">
                   {project.title}
                 </h3>
 
-                <p className="mt-2 block max-w-sm text-sm text-white/90 transition-colors duration-300 md:hidden md:text-gray-600 md:group-hover:block">
+                <p className="mt-2 text-sm text-white/90 transition-colors duration-300 md:text-gray-600 md:group-hover:text-white/90">
                   {project.description}
                 </p>
               </div>
