@@ -59,7 +59,7 @@ export default function WorkGrid() {
               />
 
               <div className="relative z-10 aspect-video w-full overflow-hidden bg-gray-200">
-                {project.desktopImages && project.desktopImages[0] && (
+                {project.desktopImages?.[0] && (
                   <Image
                     src={project.desktopImages[0]}
                     alt={project.title}
