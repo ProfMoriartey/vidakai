@@ -1,90 +1,62 @@
 import "~/styles/globals.css";
 
-import { type Metadata } from "next";
-import { Geist, JetBrains_Mono } from "next/font/google";
-import { cn } from "~/lib/utils";
-import SmoothScroll from "~/components/SmoothScroll";
-import Preloader from "~/components/Preloader";
-import GlobalBackground from "../components/GlobalBackground";
+import { type Metadata, type Viewport } from "next";
+import { Archivo, Readex_Pro } from "next/font/google";
+import Navbar from "~/components/Navbar";
+import Footer from "~/components/Footer";
+import { site } from "~/data/site";
 
-const jetbrainsMono = JetBrains_Mono({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-mono",
+  axes: ["wdth"],
+  variable: "--font-archivo",
+  display: "swap",
 });
 
+const readex = Readex_Pro({
+  subsets: ["latin", "arabic"],
+  variable: "--font-readex",
+  display: "swap",
+});
+
+const title = "Vidakai Studio · Websites for local businesses";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vidakai.com"), // Update with your actual domain
-  title: {
-    default: "VidaKai | Digital Craft & Web Development",
-    template: "%s | VidaKai",
-  },
-  description:
-    "VidaKai builds high-performance web applications, inclusive UI/UX designs, and strategic international digital marketing campaigns.",
-  keywords: [
-    "Web Development",
-    "UI/UX Design",
-    "Full-Stack Agency",
-    "Digital Marketing",
-    "Next.js",
-  ],
-  authors: [{ name: "VidaKai" }],
-  creator: "VidaKai",
+  metadataBase: new URL(site.url),
+  title: { default: title, template: "%s · Vidakai Studio" },
+  description: site.description,
+  applicationName: site.name,
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://vidakai.com",
-    title: "VidaKai | Digital Craft & Web Development",
-    description:
-      "High-performance web applications and strategic international marketing.",
-    siteName: "VidaKai",
-    images: [
-      {
-        url: "/opengraph-image.png", // Next.js automatically looks for this file
-        width: 1200,
-        height: 630,
-        alt: "VidaKai Web Development Agency",
-      },
-    ],
+    url: "/",
+    siteName: site.name,
+    title,
+    description: site.description,
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "VidaKai | Digital Craft & Web Development",
-    description:
-      "High-performance web applications and strategic international marketing.",
-    images: ["/twitter-image.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  twitter: { card: "summary_large_image", title, description: site.description },
+  robots: { index: true, follow: true },
 };
 
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-});
+export const viewport: Viewport = {
+  themeColor: "#121418",
+  colorScheme: "dark",
+};
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={cn(geist.variable, "font-mono", jetbrainsMono.variable)}
-    >
+    <html lang="en" dir="ltr" className={`${archivo.variable} ${readex.variable}`}>
       <body>
-        <SmoothScroll>
-          <Preloader />
-          <GlobalBackground />
-          {children}
-        </SmoothScroll>
+        <a
+          href="#main"
+          className="btn btn-primary sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-3 focus:z-[60]"
+        >
+          Skip to content
+        </a>
+        <Navbar />
+        <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );

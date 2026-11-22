@@ -1,65 +1,48 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import { projects } from "../../data/projects";
-import RevealText from "../../components/RevealText";
+import { projects } from "~/data/projects";
+
+export const metadata: Metadata = {
+  title: "All projects",
+  description: "Websites and web apps designed and built by Vidakai Studio.",
+  alternates: { canonical: "/work" },
+};
 
 export default function WorkArchive() {
   return (
-    <main className="mx-auto min-h-screen max-w-7xl px-4 pt-32 pb-32 text-black sm:px-6 lg:px-8">
-      <div className="mb-24">
-        <Link
-          href="/#work"
-          className="mb-8 inline-block text-sm font-bold tracking-widest text-gray-400 uppercase transition-colors hover:text-black"
-        >
-          Back to Home
+    <div className="mx-auto max-w-[1200px] px-4 pt-16 sm:px-6 lg:px-8">
+      <div className="border-s border-line ps-5 pt-14 pb-24 sm:ps-8 md:pt-20 lg:ps-12">
+        <Link href="/#work" className="text-sm text-fg-3 hover:text-fg">
+          <span aria-hidden="true" className="inline-block rtl:rotate-180">←</span> Back to home
         </Link>
+        <h1 className="font-display-wide mt-8 text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] tracking-[-0.02em]">
+          All projects
+        </h1>
 
-        <RevealText>
-          <h1 className="mb-6 text-5xl font-bold tracking-tighter md:text-8xl">
-            Project Archive.
-          </h1>
-        </RevealText>
-      </div>
-
-      <div className="flex flex-col border-t border-gray-200">
-        <div className="hidden grid-cols-12 gap-4 border-b border-gray-200 py-4 text-xs font-bold tracking-widest text-gray-400 uppercase md:grid">
-          <div className="col-span-4">Project</div>
-          <div className="col-span-5">Tech Stack</div>
-          <div className="col-span-3 text-right">Link</div>
-        </div>
-
-        {projects.map((project) => (
-          <Link
-            href={`/work/${project.id}`}
-            key={project.id}
-            className="group -mx-4 grid grid-cols-1 items-center gap-4 border-b border-gray-200 px-4 py-8 transition-colors hover:bg-gray-50 md:mx-0 md:grid-cols-12 md:px-0"
-          >
-            <div className="col-span-4">
-              <h3 className="text-2xl font-bold transition-transform duration-300 group-hover:translate-x-2">
-                {project.title}
-              </h3>
-            </div>
-
-            <div className="col-span-5 mt-4 flex flex-wrap gap-2 md:mt-0">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600"
-                >
-                  {tag}
+        <ul className="mt-14 border-t border-line">
+          {projects.map((p) => (
+            <li key={p.id}>
+              <Link
+                href={`/work/${p.id}`}
+                className="group grid gap-3 border-b border-line py-6 transition-colors hover:bg-ink-raised md:grid-cols-12 md:items-center md:gap-6 md:px-4"
+              >
+                <span className="md:col-span-4">
+                  <span className="block text-sm text-fg-3">{p.sector}</span>
+                  <span className="mt-1 block text-xl font-medium md:text-2xl">{p.title}</span>
                 </span>
-              ))}
-            </div>
-
-            <div className="col-span-3 mt-4 opacity-50 transition-opacity group-hover:opacity-100 md:mt-0 md:text-right">
-              <span className="inline-block -rotate-45 text-xl transition-transform duration-300 group-hover:rotate-0">
-                →
-              </span>
-            </div>
-          </Link>
-        ))}
+                <span className="text-[15px] text-fg-2 md:col-span-5">{p.summary}</span>
+                <span className="flex flex-wrap gap-2 md:col-span-3 md:justify-end">
+                  {p.tags.slice(0, 3).map((t) => (
+                    <span key={t} className="border border-line px-2 py-0.5 text-[13px] text-fg-3">
+                      {t}
+                    </span>
+                  ))}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
-    </main>
+    </div>
   );
 }

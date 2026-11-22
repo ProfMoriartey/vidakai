@@ -1,21 +1,20 @@
-import Navbar from "../components/Navbar"
-import Hero from "../components/Hero"
-import Marquee from "../components/Marquee"
-import Services from "../components/Services"
-import About from "../components/About"
-import WorkGrid from "../components/WorkGrid"
-import Footer from "~/components/Footer";
+import Hero from "~/components/Hero";
+import WorkGrid from "~/components/WorkGrid";
+import Templates from "~/components/Templates";
+import { Included, Process } from "~/components/Process";
+import About from "~/components/About";
+import Contact from "~/components/Contact";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Navbar />
+    <>
       <Hero />
-      <Marquee />
-      <Services />
-      <About />
       <WorkGrid />
-      <Footer />
-    </main>
-  )
+      <Templates />
+      <Process />
+      <Included />
+      <About />
+      <Contact />
+    </>
+  );
 }
