@@ -49,7 +49,7 @@ export default function Templates() {
       id="templates"
       number="03"
       title="Templates for your kind of business"
-      intro="Each template is a ready-made starting point for one type of business. I fill it with your content, adjust it to your brand and launch it. Previews are on the way."
+      intro="Each template is a ready-made starting point for one type of business. It’s filled with your content, adjusted to your brand and launched. Previews are on the way."
     >
       <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-5">
         {templates.map((t, i) => (

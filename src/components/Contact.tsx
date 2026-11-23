@@ -12,7 +12,7 @@ export default function Contact() {
       id="contact"
       number="07"
       title="Start your website"
-      intro="Tell me about your business and what the site needs to do. I read every message myself."
+      intro="Describe your business and what the site needs to do. Every message gets a personal reply."
     >
       <div className="grid gap-10 md:grid-cols-12">
         <div className="md:col-span-7">
@@ -32,10 +32,7 @@ export default function Contact() {
                 </div>
               ))}
             </dl>
-          ) : (
-            // TODO: set site.email and site.whatsapp in src/data/site.ts
-            <p className="text-fg-3">TODO: email and WhatsApp links appear here once set in src/data/site.ts.</p>
-          )}
+          ) : null}
         </div>
       </div>
     </Sheet>

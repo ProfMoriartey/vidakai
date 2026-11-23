@@ -3,7 +3,7 @@ import { included, steps, timelines } from "~/data/site";
 
 export function Process() {
   return (
-    <Sheet id="process" number="04" title="How it works" intro="Four steps, and you deal with one person through all of them.">
+    <Sheet id="process" number="04" title="How it works" intro="Four steps, with one point of contact from brief to launch.">
       <ol className="grid gap-px border border-line bg-line md:grid-cols-4">
         {steps.map((s, i) => (
           <li key={s.title} className="bg-ink p-6">
@@ -18,6 +18,7 @@ export function Process() {
           </li>
         ))}
       </ol>
+      <p className="mt-6 text-[15px] text-fg-3">Custom builds take longer; the plan is agreed in the brief.</p>
     </Sheet>
   );
 }

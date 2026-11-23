@@ -16,12 +16,12 @@ export default function Hero() {
               id="hero-title"
               className="font-display-wide text-[clamp(2.375rem,5vw,4.25rem)] leading-[1.02] tracking-[-0.02em]"
             >
-              Websites for local businesses, designed and built by one person
+              Websites for local businesses, designed, built and launched for you
             </h1>
             <p className="mt-6 max-w-[52ch] text-lg text-fg-2 md:text-xl">
               Restaurants, cafes, clinics, schools and shops. Start from a template made for your kind of
-              business, or have one built from scratch. You talk to the person doing the work, from brief to
-              launch.
+              business, or get a site built from scratch, with design, build, hosting and launch handled in one
+              place.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Link href="/#contact" className="btn btn-primary">

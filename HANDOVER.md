@@ -4,9 +4,9 @@ Last updated: 2026-11-23. Nothing is committed; the owner reviews and commits. W
 
 ## Status
 
-The redesign is built and passes `pnpm check`, `pnpm test` and `pnpm build`. Every route is static. The copy still has TODO placeholders that only the owner can fill (see below).
+The redesign is built and passes `pnpm check`, `pnpm test` and `pnpm build`. Every route is static. The copy is final (2026-11-23): every TODO is replaced, and no TODO markers remain in `src/`.
 
-Direction: **The Drawing Set** (see `DESIGN.md`). The site is presented as a builder's set of drawings: numbered sheets, a title block naming the owner, a dimension line from brief to launch, near-black ink, off-white hairlines, one vermilion "redline" accent. The hero has a CSS 3D exploded view of a website (no WebGL). Product facts and brand rules are in `PRODUCT.md`.
+Direction: **The Drawing Set** (see `DESIGN.md`). The site is presented as a builder's set of drawings: numbered sheets, a title block ("Drawn and built by Vidakai Studio"), a dimension line from brief to launch, near-black ink, off-white hairlines, one vermilion "redline" accent. The hero has a CSS 3D exploded view of a website (no WebGL). Product facts and brand rules are in `PRODUCT.md`.
 
 Decisions so far: dark only; English only, RTL-safe layout; Work before Templates; CSS 3D, not three.js.
 
@@ -27,7 +27,7 @@ Both runs share one condition: UploadThing (`*.ufs.sh`) does not respond from th
 
 **Design system:** tokens in `src/styles/globals.css` (`@theme`). Fonts are Archivo (wide display) and Readex Pro (body, covers Arabic), loaded with next/font. The old `font-mono` and every `bg-white`, `text-black`, `gray-*` utility are gone. Browser surfaces are themed: selection, caret, focus ring and scrollbar.
 
-**Structure:** Hero, Selected work, Templates (10 placeholder cards), How it works, What's included, Who you'll work with, Contact. Content and copy live in `src/data/site.ts` and `src/data/projects.ts`. Everything is a server component except `Navbar` (mobile menu), `Tilt` (pointer tilt), `ProjectGallery` and `ContactForm`.
+**Structure:** Hero, Selected work, Templates (10 cards with placeholder drawings), How it works, What's included, About the studio, Contact. Content and copy live in `src/data/site.ts` and `src/data/projects.ts`. Everything is a server component except `Navbar` (mobile menu), `Tilt` (pointer tilt), `ProjectGallery` and `ContactForm`.
 
 **Contact form:** zod validation of name, email and message (`src/lib/contact.ts`). All fields are HTML-escaped in the email, which fixes the injection. There is a hidden honeypot field (a filled honeypot gets a fake success). Rate limit: 5 per IP per 10 minutes, in memory. The header-injection risk in the subject is removed. Field errors show inline with `aria-invalid`. Tests are in `src/lib/contact.test.ts` (`pnpm test`).
 
@@ -39,19 +39,16 @@ Both runs share one condition: UploadThing (`*.ufs.sh`) does not respond from th
 
 **Testing done:** Playwright screenshots at 375, 768 and 1280 px for home, `/work` and a case study, plus an RTL/Arabic pass at 375 and 1280. No horizontal overflow at any width. The mobile menu and form errors were checked.
 
-## TODO for the owner
+## Voice
 
-All of these are marked `TODO` in code (`grep -rn TODO src`):
+The voice changed from first person to a **neutral studio voice** (see `PRODUCT.md`). No "I", "me", "we" or "our team" anywhere on the site, no mention that one person runs the studio, and the owner is not named. Never claim a team, offices or a client count. Keep this rule for every future edit, including form messages and metadata.
 
-1. **Case studies** (`src/data/projects.ts`): one or two true lines (`summary`) and a short paragraph (`content`) for Winbrella Fabrics, Hayat Goz Clinic, Tuzemen Group, Hangflow and QR Code Generator. Menupedia and Hastory kept their old paragraphs, reworded to first person; confirm the wording.
-2. **Your name and about text**: `site.owner` in `src/data/site.ts` (used in About and every title block), and the last paragraph in `src/components/About.tsx`.
-3. **Contact**: `site.email`, `site.whatsapp` (digits only, international format), and `site.social` (leave empty to hide). Email and WhatsApp links appear in Contact once set.
-4. **Domain**: confirm `site.url` (`https://vidakai.com`). It drives `metadataBase`, the sitemap and robots.
-5. **Timelines**: `steps[].duration` and `timelines` in `site.ts`. They show in the hero dimension line, How it works and What's included. No prices are shown anywhere.
-6. **Tenth template**: name and one line (`templates`, last entry).
-7. **What's included**: confirm every item in `included`, especially domain and hosting setup.
-8. **Template summaries**: the one-liners per template describe intended sections. Confirm or edit them.
-9. **Env vars**: set `EMAIL_USER` and `EMAIL_PASS` (Gmail app password) wherever the site is hosted. Without them the form shows "The form isn't working right now".
+## Before launch (in Vercel, not in the code)
+
+Only these remain:
+
+1. Set `EMAIL_USER` and `EMAIL_PASS` (a Gmail app password) in Vercel's environment variables, so form messages reach ahmed.a.alhusaini@gmail.com. Without them the form shows "The form isn't working right now".
+2. Connect the vidakai.com domain to the Vercel project.
 
 ## Decisions and risks for the owner
 

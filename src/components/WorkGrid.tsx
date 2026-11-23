@@ -11,7 +11,7 @@ export default function WorkGrid() {
       id="work"
       number="02"
       title="Selected work"
-      intro="Sites and apps I designed and built for real businesses. Each one is live."
+      intro="Live sites for real businesses and organisations, plus demos and tools."
     >
       <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {featured.map((p) => (

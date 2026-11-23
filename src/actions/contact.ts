@@ -41,7 +41,7 @@ export async function sendContactEmail(
 
   if (!env.EMAIL_USER || !env.EMAIL_PASS) {
     console.error("Contact form: EMAIL_USER or EMAIL_PASS is not set");
-    return { status: "error", message: "The form isn't working right now. Please email me directly instead." };
+    return { status: "error", message: "The form isn't working right now. Please send an email instead." };
   }
 
   const { name, email, message } = parsed.data;
@@ -56,9 +56,9 @@ export async function sendContactEmail(
         text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
         html: contactEmailHtml(parsed.data),
       });
-    return { status: "success", message: "Thanks, your message is on its way. I'll reply by email." };
+    return { status: "success", message: "Thanks, your message has been sent. You'll get a reply by email." };
   } catch (error) {
     console.error("Contact form: send failed", error);
-    return { status: "error", message: "Sending failed. Please try again, or email me directly." };
+    return { status: "error", message: "Sending failed. Please try again, or send an email instead." };
   }
 }

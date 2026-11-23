@@ -1,4 +1,3 @@
-// Everything the owner still has to fill in is marked TODO.
 // Empty strings hide the matching link instead of rendering a dead one.
 
 export const site: {
@@ -11,17 +10,14 @@ export const site: {
   social: { label: string; href: string }[];
 } = {
   name: "Vidakai Studio",
-  // TODO: confirm the production domain
   url: "https://vidakai.com",
   description:
-    "Websites for restaurants, clinics, shops and schools, designed and built by one developer.",
-  // TODO: owner's name for the About section and title blocks
-  owner: "TODO: your name",
-  // TODO: public contact email, e.g. "hello@vidakai.com"
-  email: "",
-  // TODO: WhatsApp number in international format, digits only, e.g. "905551234567"
-  whatsapp: "",
-  // TODO: add real profile URLs or leave empty to hide
+    "Websites and web apps for restaurants, clinics, manufacturers and organisations: designed, built, hosted and maintained.",
+  // Shown in each section's title block as "Drawn and built by"
+  owner: "Vidakai Studio",
+  email: "ahmed.a.alhusaini@gmail.com",
+  // International format, digits only
+  whatsapp: "905406987368",
   social: [],
 };
 
@@ -49,46 +45,45 @@ export const templates: {
   { id: "automotive", title: "Automotive", summary: "Stock, services and a booking form", layout: "catalogue" },
   { id: "digital-company", title: "Digital company", summary: "Services, case studies and contact", layout: "showcase" },
   { id: "school", title: "School", summary: "Programmes, admissions and news", layout: "booking" },
-  // TODO: owner to name the tenth template
-  { id: "tenth", title: "TODO: tenth template", summary: "TODO: one line", layout: "showcase" },
+  { id: "organisation", title: "Organisation", summary: "Events, team and a way to join", layout: "showcase" },
 ];
 
 export const steps = [
   {
     title: "Brief",
-    // TODO: confirm durations
-    duration: "TODO: day 1",
-    body: "We talk about your business, your customers and what the site has to do. You send your logo, photos and text, or I help you write them.",
+    duration: "Day 1",
+    body: "It starts with a conversation about your business, your customers and what the site has to do. You send your logo, photos and text, or get help writing them.",
   },
   {
     title: "Design",
-    duration: "TODO: days",
-    body: "I start from the template for your kind of business, or a blank sheet for a custom build, and show you the pages before I build them.",
+    duration: "Days 2–3",
+    body: "The design starts from the template for your kind of business, or from a blank sheet for a custom build. You see the pages before they’re built.",
   },
   {
     title: "Build",
-    duration: "TODO: days",
-    body: "I build the site, make it work on phones first, and add your content. You review it on a private link.",
+    duration: "Days 3–6",
+    body: "The site is built phone-first and filled with your content. You review it on a private link.",
   },
   {
     title: "Launch",
-    duration: "TODO: day",
-    body: "The site goes live on your domain and I walk you through updating it.",
+    duration: "Day 7",
+    body: "The site goes live on your domain, with hosting set up, and you’re shown how to update it.",
   },
 ] as const;
 
-// TODO: owner to confirm every item; remove anything not offered
 export const included = [
-  "Design and build by the same person",
+  "Design, build, hosting and launch in one place",
   "Works on phones, tablets and desktops",
-  "Contact form, email and WhatsApp buttons",
+  "Contact form, plus email and WhatsApp buttons",
+  "Each enquiry sent straight to your email",
+  "Optional: an instant Telegram message when a customer writes",
   "Basic search setup: titles, descriptions, sitemap",
   "Arabic and other right-to-left languages on request",
-  "TODO: domain and hosting setup (confirm)",
+  "Domain and hosting set up for you",
 ] as const;
 
-// TODO: owner to supply real timelines; no prices are shown
+// No prices are shown anywhere on the site.
 export const timelines = [
-  { label: "Template site", value: "TODO: from N weeks" },
-  { label: "Custom build", value: "TODO: from N weeks" },
+  { label: "Template site", value: "from 1 week" },
+  { label: "Custom build", value: "from 3 weeks" },
 ] as const;
