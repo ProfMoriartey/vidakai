@@ -11,7 +11,7 @@ export default function Footer() {
         <ul className="flex flex-wrap gap-x-6 gap-y-2">
           <li>
             <Link href="/work" className="hover:text-fg">
-              All projects
+              Work
             </Link>
           </li>
           <li>

@@ -216,6 +216,16 @@
   initial-value: 1;
 }
 
+/* Project gallery: the replaced screenshot fades out over the new one. */
+.gallery-fade-out {
+  animation: gallery-fade-out 250ms ease-out forwards;
+}
+@keyframes gallery-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

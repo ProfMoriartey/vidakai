@@ -1,6 +1,6 @@
 ---
 name: Vidakai Studio
-description: Websites for local businesses, drawn and built by one developer.
+description: Websites for local businesses, designed, built and launched.
 colors:
   ink: "oklch(0.165 0.010 255)"
   ink-raised: "oklch(0.205 0.012 255)"
@@ -97,7 +97,7 @@ components:
 
 **Creative North Star: "The Drawing Set"**
 
-A builder hands a client a set of drawings before anything is built: numbered sheets, a title block naming who drew them, dimension lines that say how long and how big, and red marks where the builder made a decision. Vidakai Studio presents itself the same way. The site is a drawing set for a website: each section is a sheet, the person who drew it is named in the title block, and the timeline is a dimension line from brief to launch.
+A builder hands a client a set of drawings before anything is built: numbered sheets, a title block naming who drew them, dimension lines that say how long and how big, and red marks where the builder made a decision. Vidakai Studio presents itself the same way. The site is a drawing set for a website: each section is a sheet on one continuous line, and the timeline is a dimension line from brief to launch. Per-section title blocks were removed on 2026-11-23: with the owner unnamed they only repeated the heading and the studio name.
 
 It is a blackline print, not a blueprint: near-black drafting film with off-white linework, and one colour, the redline, reserved for the builder's own marks: the primary action, the "you are here" marks, and the one figure that matters on a sheet. The construction is the decoration. There is nothing on the page that is not either content or a line that measures, frames or labels content.
 
@@ -105,7 +105,7 @@ Density is calm. Sheets have wide margins and a lot of empty film, so a business
 
 **Key Characteristics:**
 - Near-black ink ground, off-white hairline linework, one redline accent.
-- Every section is a numbered sheet; its title block sits at the end corner, never above the heading (no eyebrow labels).
+- Every section is a sheet with its heading first (no eyebrow labels, no per-section title block).
 - One continuous hairline runs down the start side of the page; each sheet starts with a redline dot on it.
 - Dimension lines carry real facts (timelines, steps), never decoration.
 - Real project screenshots are the only rich images; they sit inside sheet frames with callouts.
@@ -151,7 +151,7 @@ Square sheets (0 radius) with hairline frames; controls get a small 4px radius s
 
 ## Components
 
-- **Sheet** (`src/components/Sheet.tsx`): section wrapper with heading, optional intro, and a title block (sheet number, title, "Drawn and built by") at the end corner.
+- **Sheet** (`src/components/Sheet.tsx`): section wrapper with heading and optional intro, starting with a redline dot on the continuous line.
 - **Exploded view** (`ExplodedView.tsx`, `Tilt.tsx`, `.explode*` in globals.css): four layers at translateZ 0/70/140/210px (frame, layout grid, content wireframe, live screenshot), scaled by `--spread`. Pointer tilt on hover devices only; `--spread` animates to 0.15 on scroll-out via `animation-timeline: view()`; phones use `--spread: 0.5` and no animation.
 - **sheet-frame** utility: hairline frame with two corner registration ticks. Used for cards, the gallery and the form.
 - **Template card**: a sheet-frame with a line drawing from one of four layout families (menu, booking, catalogue, showcase), business type as title, "Preview coming soon" and a T-number anchor link.
@@ -165,7 +165,7 @@ Square sheets (0 radius) with hairline frames; controls get a small 4px radius s
 - Do let real screenshots carry the colour on the page.
 - Do write every label, timeline and claim as a fact the owner confirmed.
 - Don't add glows, gradients, particles, WebGL, preloaders, marquees or count-ups. The exploded view is the only 3D.
-- Don't put eyebrow labels above headings; sheet info lives in the title block.
+- Don't put eyebrow labels above headings.
 - Don't end headlines, labels or buttons with a period.
 - Don't use the redline for more than one or two marks per screen.
 - Don't use monospace for body or labels.

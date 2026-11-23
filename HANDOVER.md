@@ -6,7 +6,7 @@ Last updated: 2026-11-23. Nothing is committed; the owner reviews and commits. W
 
 The redesign is built and passes `pnpm check`, `pnpm test` and `pnpm build`. Every route is static. The copy is final (2026-11-23): every TODO is replaced, and no TODO markers remain in `src/`.
 
-Direction: **The Drawing Set** (see `DESIGN.md`). The site is presented as a builder's set of drawings: numbered sheets, a title block ("Drawn and built by Vidakai Studio"), a dimension line from brief to launch, near-black ink, off-white hairlines, one vermilion "redline" accent. The hero has a CSS 3D exploded view of a website (no WebGL). Product facts and brand rules are in `PRODUCT.md`.
+Direction: **The Drawing Set** (see `DESIGN.md`). The site is presented as a builder's set of drawings: sheets on one continuous line, a dimension line from brief to launch, near-black ink, off-white hairlines, one vermilion "redline" accent. The hero has a CSS 3D exploded view of a website (no WebGL). Product facts and brand rules are in `PRODUCT.md`.
 
 Decisions so far: dark only; English only, RTL-safe layout; Work before Templates; CSS 3D, not three.js.
 
@@ -27,7 +27,7 @@ Both runs share one condition: UploadThing (`*.ufs.sh`) does not respond from th
 
 **Design system:** tokens in `src/styles/globals.css` (`@theme`). Fonts are Archivo (wide display) and Readex Pro (body, covers Arabic), loaded with next/font. The old `font-mono` and every `bg-white`, `text-black`, `gray-*` utility are gone. Browser surfaces are themed: selection, caret, focus ring and scrollbar.
 
-**Structure:** Hero, Selected work, Templates (10 cards with placeholder drawings), How it works, What's included, About the studio, Contact. Content and copy live in `src/data/site.ts` and `src/data/projects.ts`. Everything is a server component except `Navbar` (mobile menu), `Tilt` (pointer tilt), `ProjectGallery` and `ContactForm`.
+**Structure:** Hero, Selected work, Getting started (How it works, then Templates: 10 cards with placeholder drawings), What's included, About the studio, Contact. The navbar links Work to the `/work` page (all projects as cards), Getting started to `/#start`, and About to `/#about`. Section title blocks were removed (2026-11-23). Content and copy live in `src/data/site.ts` and `src/data/projects.ts`. Everything is a server component except `Navbar` (mobile menu), `Tilt` (pointer tilt), `ProjectGallery` and `ContactForm`.
 
 **Contact form:** zod validation of name, email and message (`src/lib/contact.ts`). All fields are HTML-escaped in the email, which fixes the injection. There is a hidden honeypot field (a filled honeypot gets a fake success). Rate limit: 5 per IP per 10 minutes, in memory. The header-injection risk in the subject is removed. Field errors show inline with `aria-invalid`. Tests are in `src/lib/contact.test.ts` (`pnpm test`).
 

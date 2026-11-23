@@ -10,7 +10,6 @@ export default function Contact() {
   return (
     <Sheet
       id="contact"
-      number="07"
       title="Start your website"
       intro="Describe your business and what the site needs to do. Every message gets a personal reply."
     >

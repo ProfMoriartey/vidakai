@@ -1,17 +1,22 @@
 import Sheet from "./Sheet";
 import { included, steps, timelines } from "~/data/site";
 
+/** The four steps. Rendered inside the Getting started sheet, so step titles are h4. */
 export function Process() {
   return (
-    <Sheet id="process" number="04" title="How it works" intro="Four steps, with one point of contact from brief to launch.">
+    <section id="process" aria-labelledby="process-title" className="scroll-mt-24">
+      <h3 id="process-title" className="font-display-wide text-[clamp(1.5rem,2.5vw,2rem)] leading-tight">
+        How it works
+      </h3>
+      <p className="mt-3 mb-8 max-w-[62ch] text-fg-2">Four steps, with one point of contact from brief to launch.</p>
       <ol className="grid gap-px border border-line bg-line md:grid-cols-4">
         {steps.map((s, i) => (
           <li key={s.title} className="bg-ink p-6">
             <div className="flex items-baseline justify-between gap-4">
-              <h3 className="font-display-wide text-2xl">
+              <h4 className="font-display-wide text-xl">
                 <span className="me-2 text-base text-redline tabular-nums">{i + 1}</span>
                 {s.title}
-              </h3>
+              </h4>
               <span className="text-[13px] text-fg-3">{s.duration}</span>
             </div>
             <p className="mt-4 text-[15px] text-fg-2">{s.body}</p>
@@ -19,13 +24,13 @@ export function Process() {
         ))}
       </ol>
       <p className="mt-6 text-[15px] text-fg-3">Custom builds take longer; the plan is agreed in the brief.</p>
-    </Sheet>
+    </section>
   );
 }
 
 export function Included() {
   return (
-    <Sheet id="included" number="05" title="What’s included">
+    <Sheet id="included" title="What’s included">
       <div className="grid gap-12 md:grid-cols-12">
         <ul className="divide-y divide-line border-y border-line md:col-span-7">
           {included.map((item) => (

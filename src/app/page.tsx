@@ -1,7 +1,7 @@
 import Hero from "~/components/Hero";
 import WorkGrid from "~/components/WorkGrid";
-import Templates from "~/components/Templates";
-import { Included, Process } from "~/components/Process";
+import GettingStarted from "~/components/GettingStarted";
+import { Included } from "~/components/Process";
 import About from "~/components/About";
 import Contact from "~/components/Contact";
 
@@ -10,8 +10,7 @@ export default function Home() {
     <>
       <Hero />
       <WorkGrid />
-      <Templates />
-      <Process />
+      <GettingStarted />
       <Included />
       <About />
       <Contact />

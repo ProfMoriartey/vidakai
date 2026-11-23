@@ -1,18 +1,14 @@
-import { site } from "~/data/site";
-
 /**
  * One section of the drawing set. The continuous start-side line links every
- * sheet; the title block sits at the end corner, never above the heading.
+ * sheet, and each sheet starts with a redline dot on it.
  */
 export default function Sheet({
   id,
-  number,
   title,
   intro,
   children,
 }: {
   id: string;
-  number: string;
   title: string;
   intro?: React.ReactNode;
   children: React.ReactNode;
@@ -31,22 +27,8 @@ export default function Sheet({
             {intro && <div className="mt-4 max-w-[62ch] text-lg text-fg-2">{intro}</div>}
           </div>
           {children}
-          <TitleBlock number={number} title={title} />
         </div>
       </div>
     </section>
-  );
-}
-
-export function TitleBlock({ number, title }: { number: string; title: string }) {
-  return (
-    <dl className="mt-12 ms-auto grid w-full max-w-sm grid-cols-[auto_1fr] border border-line text-[13px] leading-snug text-fg-3 sm:w-auto">
-      <dt className="border-e border-line px-3 py-2">Sheet</dt>
-      <dd className="px-3 py-2 tabular-nums text-fg-2">
-        {number} · {title}
-      </dd>
-      <dt className="border-e border-t border-line px-3 py-2">Drawn and built by</dt>
-      <dd className="border-t border-line px-3 py-2 text-fg-2">{site.owner}</dd>
-    </dl>
   );
 }

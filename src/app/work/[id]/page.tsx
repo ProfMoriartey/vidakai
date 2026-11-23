@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { projects } from "~/data/projects";
 import ProjectGallery from "~/components/ProjectGallery";
-import { TitleBlock } from "~/components/Sheet";
 
 export const dynamicParams = false;
 
@@ -17,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!p) return {};
   return {
     title: p.title,
-    description: p.summary.startsWith("TODO") ? `${p.title}, built by Vidakai Studio.` : p.summary,
+    description: p.summary,
     alternates: { canonical: `/work/${p.id}` },
   };
 }
@@ -26,7 +25,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
   const { id } = await params;
   const project = projects.find((p) => p.id === id);
   if (!project) notFound();
-  const index = projects.indexOf(project) + 1;
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 pt-16 sm:px-6 lg:px-8">
@@ -36,7 +34,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
         </Link>
 
         <div className="mt-8 grid items-start gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-7">
+          <div className="min-w-0 lg:col-span-7">
             <ProjectGallery title={project.title} desktopImages={project.desktopImages} mobileImages={project.mobileImages} />
           </div>
 
@@ -71,8 +69,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
             </a>
           </div>
         </div>
-
-        <TitleBlock number={`W-${String(index).padStart(2, "0")}`} title={project.title} />
       </div>
     </div>
   );

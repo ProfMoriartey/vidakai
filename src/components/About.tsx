@@ -2,7 +2,7 @@ import Sheet from "./Sheet";
 
 export default function About() {
   return (
-    <Sheet id="about" number="06" title="About the studio">
+    <Sheet id="about" title="About the studio">
       <div className="grid gap-10 md:grid-cols-12">
         <div className="space-y-5 text-lg text-fg-2 md:col-span-8">
           <p>

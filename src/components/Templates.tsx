@@ -1,4 +1,3 @@
-import Sheet from "./Sheet";
 import { templates, type TemplateLayout } from "~/data/site";
 
 // Line drawings of each layout family. Placeholder until real template previews exist.
@@ -43,14 +42,17 @@ const drawings: Record<TemplateLayout, React.ReactNode> = {
   ),
 };
 
-export default function Templates() {
+/** Template cards. Rendered inside the Getting started sheet, so card titles are h4. */
+export default function TemplateGrid() {
   return (
-    <Sheet
-      id="templates"
-      number="03"
-      title="Templates for your kind of business"
-      intro="Each template is a ready-made starting point for one type of business. It’s filled with your content, adjusted to your brand and launched. Previews are on the way."
-    >
+    <section id="templates" aria-labelledby="templates-title" className="scroll-mt-24">
+      <h3 id="templates-title" className="font-display-wide text-[clamp(1.5rem,2.5vw,2rem)] leading-tight">
+        Templates for your kind of business
+      </h3>
+      <p className="mt-3 mb-8 max-w-[62ch] text-fg-2">
+        Each template is a ready-made starting point for one type of business. It’s filled with your content,
+        adjusted to your brand and launched. Previews are on the way.
+      </p>
       <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-5">
         {templates.map((t, i) => (
           <li key={t.id} id={`template-${t.id}`} className="sheet-frame scroll-mt-24 bg-ink-raised p-3 sm:p-4">
@@ -60,7 +62,7 @@ export default function Templates() {
                 {drawings[t.layout]}
               </g>
             </svg>
-            <h3 className="mt-4 font-medium">{t.title}</h3>
+            <h4 className="mt-4 font-medium">{t.title}</h4>
             <p className="mt-1 text-sm text-fg-2">{t.summary}</p>
             <p className="mt-3 flex items-center justify-between text-[13px] text-fg-3">
               <span>Preview coming soon</span>
@@ -72,6 +74,6 @@ export default function Templates() {
           </li>
         ))}
       </ul>
-    </Sheet>
+    </section>
   );
 }
