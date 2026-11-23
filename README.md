@@ -1,10 +1,10 @@
 # Vidakai Studio
 
-**The website of Vidakai Studio, a one-person web studio. The person who designs your site builds it and answers your messages.**
+**The website of Vidakai Studio. Websites for your business, designed, built and launched, with one point of contact from brief to launch.**
 
 🔗 **Live:** [vidakai.com](https://vidakai.com)
 
-Vidakai Studio designs and builds websites and web apps for small and mid-sized businesses: restaurants, cafés, clinics, schools and manufacturers. Each kind of business can start from a ready-made template or get a custom build. Arabic and other right-to-left languages are built in from the start.
+Vidakai Studio designs and builds websites and web apps for a wide range of businesses and organisations. A site can start from a ready-made template or be a custom build, with design, build, hosting and launch handled in one place. Arabic and other right-to-left languages are built in from the start.
 
 ## Work
 
@@ -16,6 +16,7 @@ Vidakai Studio designs and builds websites and web apps for small and mid-sized 
 | [Tüzemen Group](https://www.tuzemengroup.com/en) | Corporate website for a textile exporter |
 | [Hayat Göz Clinic](https://hayat-goz.vercel.app/en) *(demo)* | Online appointment booking for an eye clinic |
 | [Hastory](https://hastory.vercel.app) *(demo)* | AI-assisted medical charting app |
+| [QR Code Generator](https://code-cooker.vercel.app) | Editable QR codes with scan counts and link-in-bio pages |
 
 ## What a site can include
 
@@ -48,4 +49,4 @@ pnpm test              # contact-form tests
 
 ---
 
-**Ahmed Alhusaini** · [ahmedalhusaini.com](https://ahmedalhusaini.com) · [LinkedIn](https://linkedin.com/in/ahmed-alhusaini)
+**Vidakai Studio** · [vidakai.com](https://vidakai.com) · [ahmed.a.alhusaini@gmail.com](mailto:ahmed.a.alhusaini@gmail.com)

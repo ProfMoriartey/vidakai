@@ -49,9 +49,8 @@ The voice changed from first person to a **neutral studio voice** (see `PRODUCT.
 2. **Vercel:** connect the vidakai.com domain to the Vercel project.
 3. **Hastory screenshot:** the first Hastory screenshot shows the owner's name ("Ahmed Alhusaini") inside the app, which breaks the rule of not naming the owner. Replace or blur it (`src/data/projects.ts`, `hastory`).
 4. **Screenshots on UploadThing:** recommended before launch, see "Decisions and risks" below.
-5. **README:** still says "a one-person web studio". It's public on GitHub, so rewrite it in the neutral studio voice.
 
-Done (2026-11-23): the leftover lists of business types were removed from About, `site.description` and the link-preview image. Copy stays deliberately broad ("a wide range of businesses and organisations"); only the templates are named by business type.
+Done (2026-11-23): README rewritten in the studio voice (owner no longer named in the footer). The leftover lists of business types were removed from About, `site.description` and the link-preview image. Copy stays deliberately broad ("a wide range of businesses and organisations"); only the templates are named by business type.
 
 ## Next steps (recommended order)
 
