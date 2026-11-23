@@ -43,12 +43,32 @@ Both runs share one condition: UploadThing (`*.ufs.sh`) does not respond from th
 
 The voice changed from first person to a **neutral studio voice** (see `PRODUCT.md`). No "I", "me", "we" or "our team" anywhere on the site, no mention that one person runs the studio, and the owner is not named. Never claim a team, offices or a client count. Keep this rule for every future edit, including form messages and metadata.
 
-## Before launch (in Vercel, not in the code)
+## Before launch
 
-Only these remain:
+1. **Vercel:** set `EMAIL_USER` and `EMAIL_PASS` (a Gmail app password) in Vercel's environment variables, so form messages reach ahmed.a.alhusaini@gmail.com. Without them the form shows "The form isn't working right now".
+2. **Vercel:** connect the vidakai.com domain to the Vercel project.
+3. **Hastory screenshot:** the first Hastory screenshot shows the owner's name ("Ahmed Alhusaini") inside the app, which breaks the rule of not naming the owner. Replace or blur it (`src/data/projects.ts`, `hastory`).
+4. **Screenshots on UploadThing:** recommended before launch, see "Decisions and risks" below.
+5. **README:** still says "a one-person web studio". It's public on GitHub, so rewrite it in the neutral studio voice.
 
-1. Set `EMAIL_USER` and `EMAIL_PASS` (a Gmail app password) in Vercel's environment variables, so form messages reach ahmed.a.alhusaini@gmail.com. Without them the form shows "The form isn't working right now".
-2. Connect the vidakai.com domain to the Vercel project.
+Done (2026-11-23): the leftover lists of business types were removed from About, `site.description` and the link-preview image. Copy stays deliberately broad ("a wide range of businesses and organisations"); only the templates are named by business type.
+
+## Next steps (recommended order)
+
+**Biggest improvements**
+
+1. **Real template previews.** All 10 cards say "Preview coming soon". Build 2–3 real ones first (for example restaurant, clinic, company) as live demos; they double as proof. Until then, consider showing fewer cards.
+2. **Turkish and Arabic versions.** Turkish for local clients in Bursa; Arabic is already claimed as a strength. Layout and font are RTL-ready; only translations are missing.
+3. **Make WhatsApp easier to reach.** A WhatsApp button in the hero or a small fixed button on mobile; small business owners on phones usually prefer it to a form.
+4. **Better enquiries.** Add two quick choices to the contact form: type of business, and template or custom build.
+5. **Testimonials.** One real line each from Winbrella and Hangflow. Real quotes only.
+
+**Smaller improvements**
+
+6. **Project pages:** a "Next project" link at the bottom and a short "What was built" list.
+7. **Search setup:** structured business data (JSON-LD), a link-preview image per project from its screenshot, and a Google Business Profile for Bursa.
+8. **Analytics:** Vercel Analytics or similar, to see which pages lead to enquiries.
+9. **Re-check speed.** Project pages now load all 6 screenshots up front for the smooth gallery switch. Run Lighthouse on a project page to confirm LCP is still good.
 
 ## Decisions and risks for the owner
 
@@ -56,14 +76,12 @@ Only these remain:
 - **Rate limiting is per server instance** (see the `shortcut:` comment in `src/lib/contact.ts`). It's enough to stop casual abuse; use a shared store (e.g. Upstash) if spam gets through.
 - **`sharp` build script is ignored by pnpm** ("Ignored build scripts: esbuild, msw, sharp, unrs-resolver"). This was already the case before. Vercel handles image optimization itself; for self-hosting, run `pnpm approve-builds`.
 - **Scroll-fold animation** of the 3D view uses `animation-timeline: view()`. Browsers without it (Firefox today) show the view without the fold, which is fine.
-- **README** is still the T3 boilerplate; not touched.
 - **Impeccable** v4.10.0 is available (installed v4.8.1); update with `npx impeccable update` when convenient.
 
 ## Not done yet
 
 - The full impeccable `critique` / `audit` / `polish` / `harden` passes were done in-thread against the craft floor and the unslop checklist, not as separate reports. The finish-reviewer subagent was not run.
-- Real template previews (the cards are line-drawing placeholders).
-- Arabic content (layout and font are ready; no translations exist).
+- Template previews and translations: see "Next steps" above.
 
 ## Files outside git
 

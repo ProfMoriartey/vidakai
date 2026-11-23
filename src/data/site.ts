@@ -12,7 +12,7 @@ export const site: {
   name: "Vidakai Studio",
   url: "https://vidakai.com",
   description:
-    "Websites and web apps for restaurants, clinics, manufacturers and organisations: designed, built, hosted and maintained.",
+    "Websites and web apps for a wide range of businesses and organisations: designed, built, hosted and maintained.",
   // Shown in each section's title block as "Drawn and built by"
   owner: "Vidakai Studio",
   email: "ahmed.a.alhusaini@gmail.com",

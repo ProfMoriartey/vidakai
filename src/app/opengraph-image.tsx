@@ -28,7 +28,7 @@ export default function Image() {
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <div style={{ width: 120, height: 4, background: "#ef6a3d" }} />
-          <div style={{ fontSize: 28, color: "#c1c5cc" }}>Restaurants · Cafes · Clinics · Schools · Shops</div>
+          <div style={{ fontSize: 28, color: "#c1c5cc" }}>Design · Build · Hosting · Launch</div>
         </div>
       </div>
     ),

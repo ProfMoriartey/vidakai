@@ -6,8 +6,8 @@ export default function About() {
       <div className="grid gap-10 md:grid-cols-12">
         <div className="space-y-5 text-lg text-fg-2 md:col-span-8">
           <p>
-            Vidakai Studio designs and builds websites and web apps for businesses and organisations: restaurants,
-            cafes, clinics, schools, and fabric and automotive companies.
+            Vidakai Studio designs and builds websites and web apps for a wide range of businesses and
+            organisations.
           </p>
           <p>
             The work above includes live sites for clients in Turkey and Finland, a catalogue used by buyers in 53+
