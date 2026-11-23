@@ -152,38 +152,56 @@
   --tilt-y: 0deg;
   perspective: 1600px;
 }
+/* --rx / --rz are shared with .explode-pin, which applies the inverse so labels face the viewer. */
 .explode-stage {
+  --rx: calc(56deg + var(--tilt-x));
+  --rz: calc(-38deg + var(--tilt-y));
   position: relative;
   transform-style: preserve-3d;
-  transform: rotateX(calc(56deg + var(--tilt-x))) rotateZ(calc(-38deg + var(--tilt-y)));
+  transform: rotateX(var(--rx)) rotateZ(var(--rz));
   transition: transform 600ms var(--ease-out-expo);
 }
 [dir="rtl"] .explode-stage {
-  transform: rotateX(calc(56deg + var(--tilt-x))) rotateZ(calc(38deg - var(--tilt-y)));
+  --rz: calc(38deg - var(--tilt-y));
 }
 @media (max-width: 767px) {
   .explode-stage {
     --spread: 0.5;
   }
 }
+.explode-assemble {
+  transform-style: preserve-3d;
+}
 .explode-layer {
   position: absolute;
   inset: 0;
+  transform-style: preserve-3d;
   transform: translateZ(calc(var(--z) * var(--spread, 1)));
+  transition: transform 600ms var(--ease-out-expo);
+}
+/* Zero-size anchor on the layer's outer corner (bottom end), turned back to face the viewer. */
+.explode-pin {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  transform: rotateZ(calc(-1 * var(--rz))) rotateX(calc(-1 * var(--rx)));
   transition: transform 600ms var(--ease-out-expo);
 }
 
 @media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
-  .explode-turn {
-    animation: explode-turn 18s ease-in-out infinite alternate;
-    transform-style: preserve-3d;
+  /* Layers spread apart once on load. */
+  .explode-assemble {
+    animation: explode-assemble 1400ms var(--ease-out-expo) 150ms both;
   }
-  @keyframes explode-turn {
+  @keyframes explode-assemble {
     from {
-      transform: rotateZ(-6deg);
+      --spread: 0.1;
     }
     to {
-      transform: rotateZ(6deg);
+      --spread: 1;
     }
   }
   @supports (animation-timeline: view()) {

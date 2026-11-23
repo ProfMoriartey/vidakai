@@ -19,7 +19,7 @@ const readex = Readex_Pro({
   display: "swap",
 });
 
-const title = "Vidakai Studio · Websites for local businesses";
+const title = "Vidakai Studio · Websites for your businesses";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

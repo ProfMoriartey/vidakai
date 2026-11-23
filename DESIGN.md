@@ -1,6 +1,6 @@
 ---
 name: Vidakai Studio
-description: Websites for local businesses, designed, built and launched.
+description: Websites for your businesses, designed, built and launched.
 colors:
   ink: "oklch(0.165 0.010 255)"
   ink-raised: "oklch(0.205 0.012 255)"
@@ -109,8 +109,8 @@ Density is calm. Sheets have wide margins and a lot of empty film, so a business
 - One continuous hairline runs down the start side of the page; each sheet starts with a redline dot on it.
 - Dimension lines carry real facts (timelines, steps), never decoration.
 - Real project screenshots are the only rich images; they sit inside sheet frames with callouts.
-- The hero carries one 3D moment: a CSS 3D exploded axonometric of a website. No WebGL.
-- Motion: the exploded view turns slowly and folds on scroll, content lines draw in once. Desktop only; nothing moves under reduced motion.
+- The hero carries one 3D moment: a CSS 3D exploded axonometric of a website being made, one layer per process step (Brief, Design, Build, Launch). No WebGL.
+- Motion: the exploded view spreads apart once on load, tilts with the pointer and folds on scroll; wireframe lines draw in once. No continuous turning. Desktop only; nothing moves under reduced motion.
 
 ## Colors
 
@@ -138,7 +138,7 @@ Restrained strategy: tinted neutrals from one cool ink ramp plus one warm accent
 - Container max 1200px, side gutter 16px on phones, 24px tablet, 32px desktop.
 - 12-column grid on desktop; sheets stack in reading order on phones.
 - Section rhythm: 96px between sheets on desktop, 64px on phones.
-- Hero: headline (7 of 12 columns) with one primary and one secondary action; the exploded view in the other 5 columns with a callout legend on wide screens; a dimension line from Brief to Launch under both.
+- Hero: from 1024px, headline (7 of 12 columns) with one primary and one secondary action and the exploded view in the other 5; below 1024px they stack. A dimension line from Brief to Launch sits under both.
 - Logical properties throughout (`ps-`, `pe-`, `start`, `end`) so the layout mirrors in RTL.
 
 ## Elevation & Depth
@@ -152,7 +152,7 @@ Square sheets (0 radius) with hairline frames; controls get a small 4px radius s
 ## Components
 
 - **Sheet** (`src/components/Sheet.tsx`): section wrapper with heading and optional intro, starting with a redline dot on the continuous line.
-- **Exploded view** (`ExplodedView.tsx`, `Tilt.tsx`, `.explode*` in globals.css): four layers at translateZ 0/70/140/210px (frame, layout grid, content wireframe, live screenshot), scaled by `--spread`. Pointer tilt on hover devices only; `--spread` animates to 0.15 on scroll-out via `animation-timeline: view()`; phones use `--spread: 0.5` and no animation.
+- **Exploded view** (`ExplodedView.tsx`, `Tilt.tsx`, `.explode*` in globals.css): four layers at translateZ 0/70/140/210px, one per step in `steps`: Brief (notes, logo, photos, checklist), Design (column grid and outlined wireframe), Build (the same layout part filled, last card still dashed), Launch (browser bar and live screenshot). Each layer carries its label on a zero-size `.explode-pin` at its bottom-end corner; the pin applies the inverse of the stage rotation (`--rx`, `--rz`) so the label faces the viewer and stays attached through tilt and fold. Layers spread from 0.1 to 1 once on load (`.explode-assemble`); `--spread` animates to 0.15 on scroll-out via `animation-timeline: view()`; phones use `--spread: 0.5` and no animation. Pointer tilt on hover devices only.
 - **sheet-frame** utility: hairline frame with two corner registration ticks. Used for cards, the gallery and the form.
 - **Template card**: a sheet-frame with a line drawing from one of four layout families (menu, booking, catalogue, showcase), business type as title, "Preview coming soon" and a T-number anchor link.
 - **Work card**: project screenshot in a sheet frame, project name, one honest line, three fixed tags.

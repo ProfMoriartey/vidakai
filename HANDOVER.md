@@ -6,7 +6,7 @@ Last updated: 2026-11-23. Nothing is committed; the owner reviews and commits. W
 
 The redesign is built and passes `pnpm check`, `pnpm test` and `pnpm build`. Every route is static. The copy is final (2026-11-23): every TODO is replaced, and no TODO markers remain in `src/`.
 
-Direction: **The Drawing Set** (see `DESIGN.md`). The site is presented as a builder's set of drawings: sheets on one continuous line, a dimension line from brief to launch, near-black ink, off-white hairlines, one vermilion "redline" accent. The hero has a CSS 3D exploded view of a website (no WebGL). Product facts and brand rules are in `PRODUCT.md`.
+Direction: **The Drawing Set** (see `DESIGN.md`). The site is presented as a builder's set of drawings: sheets on one continuous line, a dimension line from brief to launch, near-black ink, off-white hairlines, one vermilion "redline" accent. The hero has a CSS 3D exploded view of a website being made, one labelled layer per process step: Brief, Design, Build, Launch (no WebGL). Product facts and brand rules are in `PRODUCT.md`.
 
 Decisions so far: dark only; English only, RTL-safe layout; Work before Templates; CSS 3D, not three.js.
 
