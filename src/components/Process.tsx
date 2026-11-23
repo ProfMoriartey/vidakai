@@ -1,12 +1,12 @@
 import Sheet from "./Sheet";
 import { included, steps, timelines } from "~/data/site";
 
-/** The four steps. Rendered inside the Getting started sheet, so step titles are h4. */
+/** The four steps. Rendered inside the Process sheet, so step titles are h4. */
 export function Process() {
   return (
-    <section id="process" aria-labelledby="process-title" className="scroll-mt-24">
-      <h3 id="process-title" className="font-display-wide text-[clamp(1.5rem,2.5vw,2rem)] leading-tight">
-        How it works
+    <section id="steps" aria-labelledby="steps-title" className="scroll-mt-24">
+      <h3 id="steps-title" className="font-display-wide text-[clamp(1.5rem,2.5vw,2rem)] leading-tight">
+        From brief to launch
       </h3>
       <p className="mt-3 mb-8 max-w-[62ch] text-fg-2">Four steps, with one point of contact from brief to launch.</p>
       <ol className="grid gap-px border border-line bg-line md:grid-cols-4">

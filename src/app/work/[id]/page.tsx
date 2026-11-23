@@ -29,11 +29,16 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
   return (
     <div className="mx-auto max-w-[1200px] px-4 pt-16 sm:px-6 lg:px-8">
       <div className="border-s border-line ps-5 pt-14 pb-24 sm:ps-8 md:pt-20 lg:ps-12">
-        <Link href="/work" className="text-sm text-fg-3 hover:text-fg">
-          <span aria-hidden="true" className="inline-block rtl:rotate-180">←</span> All projects
-        </Link>
+        <nav aria-label="Back" className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-fg-3">
+          <Link href="/work" className="inline-flex min-h-11 items-center gap-1.5 hover:text-fg">
+            <span aria-hidden="true" className="inline-block rtl:rotate-180">←</span> All projects
+          </Link>
+          <Link href="/" className="inline-flex min-h-11 items-center hover:text-fg">
+            Home
+          </Link>
+        </nav>
 
-        <div className="mt-8 grid items-start gap-12 lg:grid-cols-12">
+        <div className="mt-6 grid items-start gap-12 lg:grid-cols-12">
           <div className="min-w-0 lg:col-span-7">
             <ProjectGallery title={project.title} desktopImages={project.desktopImages} mobileImages={project.mobileImages} />
           </div>

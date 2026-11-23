@@ -21,10 +21,12 @@ export default function ProjectGallery({
 }) {
   const [view, setView] = useState<View>("desktop");
   const [index, setIndex] = useState(0);
-  // The image being replaced, kept on screen while it fades out.
-  const [leaving, setLeaving] = useState<{ src: string; view: View } | null>(null);
-  // Starts as the first image so the page's main image is never hidden behind a fade.
-  const [loaded, setLoaded] = useState<string | null>(desktopImages[0] ?? null);
+  // Every screenshot is mounted at once (stacked, hidden) so it has loaded before it's shown.
+  // The first one counts as loaded so the page's main image is never hidden behind a fade.
+  const [loaded, setLoaded] = useState<ReadonlySet<string>>(() => new Set(["desktop:0"]));
+  // The screenshot on screen before the last switch. It stays fully visible underneath
+  // until the new one has loaded and faded in over it, so the frame never shows through.
+  const [under, setUnder] = useState<string | null>(null);
   // True only while the frame resizes after a view switch, so window resizes don't lag.
   const [morphing, setMorphing] = useState(false);
   const [stageWidth, setStageWidth] = useState<number | null>(null);
@@ -40,17 +42,19 @@ export default function ProjectGallery({
 
   const images = view === "desktop" ? desktopImages : mobileImages;
   const shown = Math.min(index, images.length - 1);
-  const current = images[shown];
+  const currentKey = `${view}:${shown}`;
+  // What the viewer sees right now: the current screenshot once loaded, else the one under it.
+  const visibleKey = loaded.has(currentKey) || !under ? currentKey : under;
 
-  if (!current) {
+  if (!images[shown]) {
     return <div className="sheet-frame flex min-h-80 items-center justify-center bg-ink-raised text-fg-3">No screenshots yet</div>;
   }
 
   const show = (nextView: View, nextIndex: number) => {
     const list = nextView === "desktop" ? desktopImages : mobileImages;
-    const next = list[Math.min(nextIndex, list.length - 1)];
-    if (!next || next === current) return;
-    setLeaving({ src: current, view });
+    const nextKey = `${nextView}:${Math.min(nextIndex, list.length - 1)}`;
+    if (list.length === 0 || nextKey === currentKey) return;
+    setUnder(visibleKey);
     if (nextView !== view) setMorphing(true);
     setView(nextView);
     setIndex(nextIndex);
@@ -84,32 +88,35 @@ export default function ProjectGallery({
           <div
             style={frameStyle}
             onTransitionEnd={(e) => e.target === e.currentTarget && setMorphing(false)}
-            className={`relative overflow-hidden border border-line bg-ink ${
+            className={`relative isolate overflow-hidden border border-line bg-ink ${
               morphing ? "transition-[width,height] duration-500 ease-out-expo" : ""
             } ${frameStyle ? "" : view === "desktop" ? "aspect-[34/18] w-full" : "aspect-[12/25] w-full max-w-xs"}`}
           >
-            {leaving && leaving.src !== current && (
-              <Image
-                key={`leaving-${leaving.src}`}
-                src={leaving.src}
-                alt=""
-                aria-hidden="true"
-                fill
-                sizes={SIZES[leaving.view]}
-                className="gallery-fade-out object-cover object-top"
-                onAnimationEnd={() => setLeaving(null)}
-              />
+            {(["desktop", "mobile"] as const).flatMap((v) =>
+              (v === "desktop" ? desktopImages : mobileImages).map((src, i) => {
+                const key = `${v}:${i}`;
+                const isCurrent = key === currentKey;
+                const isUnder = key === under && !isCurrent;
+                const on = (isCurrent && loaded.has(key)) || isUnder;
+                return (
+                  <Image
+                    key={key}
+                    src={src}
+                    alt={isCurrent ? `${title}, ${v} screenshot ${i + 1} of ${images.length}` : ""}
+                    aria-hidden={isCurrent ? undefined : true}
+                    fill
+                    sizes={SIZES[v]}
+                    // Only the incoming screenshot fades; everything else switches instantly while covered.
+                    className={`object-cover object-top ${on ? "opacity-100" : "opacity-0"} ${
+                      isCurrent ? "z-20" : isUnder ? "z-10" : "z-0"
+                    } ${isCurrent && under ? "transition-opacity duration-300 ease-out" : ""}`}
+                    priority={key === "desktop:0"}
+                    onLoad={() => setLoaded((prev) => (prev.has(key) ? prev : new Set(prev).add(key)))}
+                    onTransitionEnd={() => isCurrent && setUnder(null)}
+                  />
+                );
+              }),
             )}
-            <Image
-              key={current}
-              src={current}
-              alt={`${title}, ${view} screenshot ${shown + 1} of ${images.length}`}
-              fill
-              sizes={SIZES[view]}
-              className={`object-cover object-top transition-opacity duration-300 ${loaded === current ? "opacity-100" : "opacity-0"}`}
-              priority={shown === 0 && view === "desktop"}
-              onLoad={() => setLoaded(current)}
-            />
           </div>
         </div>
         {images.length > 1 && (

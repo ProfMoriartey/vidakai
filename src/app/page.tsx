@@ -1,6 +1,6 @@
 import Hero from "~/components/Hero";
 import WorkGrid from "~/components/WorkGrid";
-import GettingStarted from "~/components/GettingStarted";
+import ProcessSection from "~/components/ProcessSection";
 import { Included } from "~/components/Process";
 import About from "~/components/About";
 import Contact from "~/components/Contact";
@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <Hero />
       <WorkGrid />
-      <GettingStarted />
+      <ProcessSection />
       <Included />
       <About />
       <Contact />

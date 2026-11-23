@@ -19,9 +19,8 @@ export default function Hero() {
               Websites for local businesses, designed, built and launched for you
             </h1>
             <p className="mt-6 max-w-[52ch] text-lg text-fg-2 md:text-xl">
-              Restaurants, cafes, clinics, schools and shops. Start from a template made for your kind of
-              business, or get a site built from scratch, with design, build, hosting and launch handled in one
-              place.
+              For a wide range of businesses and organisations. Start from a ready-made template or get a site
+              built from scratch, with design, build, hosting and launch handled in one place.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Link href="/#contact" className="btn btn-primary">

@@ -42,7 +42,7 @@ const drawings: Record<TemplateLayout, React.ReactNode> = {
   ),
 };
 
-/** Template cards. Rendered inside the Getting started sheet, so card titles are h4. */
+/** Template cards. Rendered inside the Process sheet, so card titles are h4. */
 export default function TemplateGrid() {
   return (
     <section id="templates" aria-labelledby="templates-title" className="scroll-mt-24">
