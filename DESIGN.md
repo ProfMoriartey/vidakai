@@ -1,6 +1,6 @@
 ---
 name: Vidakai Studio
-description: Websites for your businesses, designed, built and launched.
+description: Websites for your business, designed, built and launched.
 colors:
   ink: "oklch(0.165 0.010 255)"
   ink-raised: "oklch(0.205 0.012 255)"

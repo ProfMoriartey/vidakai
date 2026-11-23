@@ -19,7 +19,7 @@ export default function Hero() {
               id="hero-title"
               className="font-display-wide text-[clamp(2.375rem,5vw,4.25rem)] leading-[1.02] tracking-[-0.02em]"
             >
-              Websites for your businesses, Designed, Built and Launched.
+              Websites for your business, designed, built and launched
             </h1>
             <p className="text-fg-2 mt-6 max-w-[52ch] text-lg md:text-xl">
               For a wide range of businesses and organisations. Start from a
